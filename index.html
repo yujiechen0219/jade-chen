@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>陈玉洁 Jade Chen</title>
+<meta name="description" content="陈玉洁，AI 时代人才画像的探索者。和团队一起研究：AI 时代，该培养什么样的人。思维印记与游戏侦探学院联合创始人。">
+<meta name="theme-color" content="#050814">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  /* Layout idea: one luminous thread runs down the left edge and ties every section together;
+     content sits on a 12-column grid; photographs are lit plates floating in deep space.
+     Cold light (ice) marks what the system records; warm light (ember) marks what a person owns. */
+  --ink:#050814;
+  --ink-2:#0a1022;
+  --ink-3:#101931;
+  --line:rgba(160,185,255,.16);
+  --line-2:rgba(160,185,255,.32);
+  --text:#e9edf7;
+  --text-2:#aab4cc;
+  --text-3:#7c88a8;
+  --ice:#9ad8ff;
+  --ember:#ffc48a;
+  --f-serif:"Jade Serif","Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC","SimSun",serif;
+  --f-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei","Noto Sans SC","Helvetica Neue",Arial,sans-serif;
+  --f-latin:"Source Serif 4","Jade Serif",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --gutter:clamp(20px,4.4vw,64px);
+  --sec:clamp(84px,11vw,168px);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-sans);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:hover{color:var(--ice);text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:2px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+h1,h2,h3,h4,p,ol,ul,figure,blockquote,dl,dd{margin:0}
+ol,ul{padding:0;list-style:none}
+[lang=en]{font-family:var(--f-latin)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.wrap{width:min(1240px,100% - 2*var(--gutter));margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ice);color:var(--ink);padding:8px 14px;z-index:99}
+.skip:focus{left:8px}
+
+/* ---------- sky ---------- */
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+  radial-gradient(1100px 700px at 88% -8%,rgba(46,84,190,.30),transparent 62%),
+  radial-gradient(900px 600px at -6% 38%,rgba(20,90,140,.22),transparent 60%),
+  var(--ink)}
+.sky canvas{position:absolute;inset:0;width:100%;height:100%}
+.aur{position:absolute;border-radius:50%;will-change:transform;animation:drift 46s ease-in-out infinite alternate}
+.aur.a1{width:70vmax;height:70vmax;left:-28vmax;top:22vh;background:radial-gradient(closest-side,rgba(38,120,190,.20),transparent)}
+.aur.a2{width:62vmax;height:62vmax;right:-24vmax;top:48vh;background:radial-gradient(closest-side,rgba(96,70,190,.18),transparent);animation-duration:64s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translate3d(0,-4vh,0) scale(1)}to{transform:translate3d(6vw,6vh,0) scale(1.12)}}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:13px var(--gutter);background:linear-gradient(rgba(5,8,20,.9),rgba(5,8,20,.66));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.brand b{font-family:var(--f-serif);font-weight:600;font-size:19px;letter-spacing:.12em}
+.brand span{font-family:var(--f-latin);font-style:italic;color:var(--text-2);font-size:15px}
+.top-nav{display:flex;gap:clamp(14px,2vw,28px);font-size:14px}
+.top-nav a{text-decoration:none;color:var(--text-2);padding:4px 0;border-bottom:1px solid transparent;white-space:nowrap}
+.top-nav a:hover,.top-nav a.on{color:var(--text);border-bottom-color:var(--ice)}
+.top-nav .sep{width:1px;height:13px;background:var(--line-2);align-self:center}
+.menu-btn{display:none;font-size:14px;padding:6px 14px;border:1px solid var(--line-2);border-radius:999px}
+@media (max-width:1080px){
+  .top-nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:rgba(5,8,20,.97);border-bottom:1px solid var(--line);padding:8px var(--gutter) 20px}
+  .top-nav.open{display:flex}
+  .top-nav a{padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .top-nav .sep{display:none}
+  .menu-btn{display:block}
+}
+
+/* ---------- thread (left rail) ---------- */
+.rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:30;display:none;flex-direction:column;gap:20px}
+.rail::before{content:"";position:absolute;left:5px;top:-50vh;bottom:-50vh;width:1px;background:linear-gradient(transparent,var(--line-2) 22%,var(--line-2) 78%,transparent)}
+.rail a{position:relative;display:block;width:11px;height:11px;text-decoration:none}
+.rail a i{position:absolute;inset:2px;border-radius:50%;background:var(--ink);border:1px solid var(--text-3);transition:all .25s}
+.rail a span{position:absolute;left:22px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;color:var(--text);background:rgba(10,16,34,.92);border:1px solid var(--line);padding:1px 9px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s}
+.rail a:hover span,.rail a:focus-visible span{opacity:1}
+.rail a.on i{inset:0;background:var(--ice);border-color:var(--ice);box-shadow:0 0 14px rgba(154,216,255,.8)}
+@media (min-width:1220px){.rail{display:flex}}
+
+/* ---------- section scaffolding ---------- */
+.sec{padding:var(--sec) 0;position:relative}
+#global{overflow-x:clip}
+.sec + .sec{border-top:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(36px,5vw,72px)}
+.sec-head h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(34px,5.1vw,70px);line-height:1.14;letter-spacing:.02em;text-wrap:balance;max-width:14em}
+.sec-head h2 span,.chapter h2 span{display:block}
+.sec-head h2 span.ph{display:inline-block}
+.nb{font-style:normal;white-space:nowrap}
+.sec-head .en{font-style:italic;font-size:clamp(17px,1.7vw,23px);color:var(--text-2);margin-top:.55em;line-height:1.4;max-width:30em}
+.lead{font-size:clamp(18px,1.65vw,22px);line-height:1.8;color:var(--text);max-width:34em;text-wrap:pretty}
+.body{color:#d3d9e8;max-width:38em;text-wrap:pretty}
+.body + .body{margin-top:1.1em}
+.note{font-size:13.5px;color:var(--text-3);line-height:1.7}
+.ext::after{content:"↗";font-family:var(--f-sans);font-size:.82em;margin-left:.2em;opacity:.7}
+
+/* chapter markers: one luminous line for line one, two for line two */
+.chap-block{border-top:1px solid var(--line);padding:var(--sec) 0 0}
+.chap-block + .sec{padding-top:clamp(64px,8vw,120px)}
+.chapter .bars{display:grid;gap:10px;margin-bottom:clamp(28px,3.4vw,48px)}
+.chapter .bars i{display:block;height:1px;background:linear-gradient(90deg,var(--ice),var(--ice) 55%,var(--ember));box-shadow:0 0 14px rgba(154,216,255,.6)}
+.ch-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:start}
+.chapter .no{font-family:var(--f-serif);font-weight:600;font-size:clamp(17px,1.5vw,20px);letter-spacing:.32em;color:var(--ice)}
+.chapter h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(40px,6.2vw,92px);line-height:1.12;letter-spacing:.03em;margin-top:.16em;text-wrap:balance}
+.chapter .en{font-style:italic;color:var(--text-2);font-size:clamp(17px,1.7vw,23px);margin-top:.5em;line-height:1.4}
+.chapter .sum{font-size:clamp(16px,1.4vw,18px);line-height:1.85;color:#d3d9e8;max-width:31em;margin-bottom:22px}
+.chapter .lines a{grid-template-columns:3.4em 1fr auto}
+@media (max-width:820px){.ch-grid{grid-template-columns:1fr}}
+
+/* two-column "document" rows: a quiet label on the left, content on the right */
+.row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(20px,3vw,48px);padding:clamp(32px,4vw,56px) 0;border-top:1px solid var(--line)}
+.row > h3{font-family:var(--f-serif);font-weight:600;font-size:clamp(20px,1.9vw,25px);line-height:1.4;letter-spacing:.03em;align-self:start;position:sticky;top:92px}
+.row > h3 small{display:block;font-family:var(--f-latin);font-style:italic;font-weight:400;font-size:15px;color:var(--text-3);letter-spacing:0;margin-top:4px}
+@media (max-width:820px){.row{grid-template-columns:1fr;gap:18px}.row > h3{position:static}}
+
+/* ---------- plates (photos as lit screens) ---------- */
+.plate{position:relative}
+.plate .ph{position:relative;display:block}
+.plate img{width:100%;height:auto;border:1px solid var(--line-2);background:var(--ink-3)}
+.plate.ticks .ph::before,.plate.ticks .ph::after{content:"";position:absolute;width:16px;height:16px;border:1px solid var(--ice);pointer-events:none;z-index:2}
+.plate.ticks .ph::before{left:-7px;top:-7px;border-right:0;border-bottom:0}
+.plate.ticks .ph::after{right:-7px;bottom:-7px;border-left:0;border-top:0}
+figcaption{font-size:13px;line-height:1.65;color:var(--text-2);margin-top:12px}
+figcaption .mono{color:var(--text-3);margin-right:.7em;font-size:12px}
+
+/* ---------- hero ---------- */
+/* First screen: a question set large on the left; on the right a fine-line instrument around the name,
+   with the two things that cannot be outsourced marked on its orbit. No photograph. */
+.hero{padding:clamp(28px,3.2vw,46px) 0 clamp(64px,8vw,120px);position:relative;overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/100% 120px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/120px 100%;
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 70% 30%,rgba(0,0,0,.5),transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 70% 30%,rgba(0,0,0,.5),transparent 75%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,35vw,500px);column-gap:clamp(28px,5vw,88px);align-items:center;min-height:min(72vh,720px)}
+.hero-text{grid-column:1;grid-row:1}
+.hero-side{grid-column:2;grid-row:1;position:relative;aspect-ratio:1;display:grid;place-items:center}
+.hero-fig{position:absolute;inset:-8%}
+.hero-fig svg{width:100%;height:100%;overflow:visible;display:block}
+.hero-fig .ln{fill:none;stroke:var(--line-2);stroke-width:1}
+.hero-fig .dash{stroke:rgba(160,185,255,.26);stroke-dasharray:2 9}
+.hero-fig .orbit{fill:none;stroke:var(--ice);stroke-width:1;opacity:.55}
+.hero-fig .orbit.far{stroke:var(--line-2);opacity:.6}
+.hero-fig .tk{fill:none;stroke:rgba(160,185,255,.42);stroke-width:8;stroke-dasharray:1 14.289}
+.hero-fig .tk.major{stroke:rgba(160,185,255,.7);stroke-width:16;stroke-dasharray:1.4 149.396}
+.hero-fig .turn{transform-origin:320px 320px;animation:spin 240s linear infinite}
+.hero-fig .ember{--c:var(--ember)}.hero-fig .ice{--c:var(--ice)}
+.hero-fig .star circle{fill:var(--c)}
+.hero-fig .star .halo{fill:none;stroke:var(--c);stroke-width:1;opacity:.5}
+.hero-fig .star text{fill:var(--c);font-family:var(--f-serif);font-weight:600;font-size:25px;letter-spacing:.16em}
+.hero-fig .core{fill:var(--text)}
+.hero-fig .core-halo{fill:none;stroke:rgba(233,237,247,.34);stroke-width:1}
+.hero-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-bottom:clamp(16px,1.6vw,22px)}
+.hero-label::before{content:"";width:40px;height:1px;background:var(--ice);box-shadow:0 0 12px var(--ice)}
+.hero-label b{font-family:var(--f-serif);font-weight:600;font-size:clamp(19px,1.85vw,26px);letter-spacing:.1em;color:var(--ice)}
+.hero-label span{font-size:15.5px;color:var(--text-2)}
+.hero-label span[lang=en]{font-style:italic;font-size:16.5px}
+.hero-q{font-family:var(--f-serif);font-weight:300;font-size:clamp(38px,5.1vw,74px);line-height:1.2;letter-spacing:.02em}
+.hero-q span{display:block}
+.hero-q + .hero-intro{margin-top:clamp(20px,2vw,28px)}
+.hero-intro{font-size:clamp(16.5px,1.36vw,18.5px);line-height:1.85;color:#dfe4f0;max-width:37em}
+.hero-ans{font-family:var(--f-serif);font-weight:300;font-size:clamp(22px,2.3vw,32px);line-height:1.5;letter-spacing:.02em;color:var(--text);margin:.3em 0 .55em;max-width:22em;text-wrap:balance}
+.hero-ans span{display:block}
+.hero-three{border-top:1px solid var(--line-2);margin:clamp(14px,1.5vw,20px) 0 clamp(16px,1.7vw,22px);max-width:45em}
+.hero-three li{display:grid;grid-template-columns:clamp(132px,11.6vw,166px) minmax(0,1fr);gap:2px 20px;align-items:baseline;padding:7px 0 8px;border-bottom:1px solid var(--line)}
+.hero-three b{font-family:var(--f-serif);font-weight:600;font-size:clamp(17px,1.5vw,20.5px);letter-spacing:.04em;color:var(--c)}
+.hero-three span{font-size:clamp(15px,1.2vw,16.5px);line-height:1.7;color:#dfe4f0}
+@media (max-width:560px){.hero-three li{grid-template-columns:1fr}}
+.hero-intro em{font-style:normal;font-weight:600}
+.hero-intro .s{display:inline-block}
+.hero-intro + .hero-intro{margin-top:.55em}
+.hero-intro,.courses p,.map-r p,.steps p,.chapter .sum,.pillars p,.dots li,.book-steps p,.shelf .w{text-wrap:pretty}
+.hero-links{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:clamp(18px,1.8vw,24px)}
+.hero-links a{font-size:14.5px;line-height:1.5;text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:7px 18px;color:var(--text)}
+.hero-links a::after{content:"↓";margin-left:.5em;color:var(--text-3)}
+.hero-links a:hover{border-color:var(--ice);color:var(--ice)}
+.lines{border-top:1px solid var(--line)}
+.lines a{display:grid;grid-template-columns:4.6em 1fr auto;gap:4px 18px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.lines a .k{font-size:13px;color:var(--text-3)}
+.lines a b{font-family:var(--f-serif);font-weight:600;font-size:19px;letter-spacing:.04em}
+.lines a .d{grid-column:2;font-size:14px;color:var(--text-2);line-height:1.6}
+.lines a .go{grid-row:1/3;grid-column:3;align-self:center;font-size:18px;color:var(--text-3);transition:transform .2s,color .2s}
+.lines a:hover .go{transform:translateY(3px);color:var(--ice)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-text,.hero-side{grid-column:1;grid-row:auto}
+  .hero-side{aspect-ratio:auto;display:block;place-items:normal;height:0}
+  .hero-fig{inset:auto;right:-52vw;top:-22vw;width:124vw;height:124vw;opacity:.42}
+  .hero-fig .star{display:none}
+  .hero-label{margin:6px 0 22px}
+  .hero-q{font-size:clamp(34px,10vw,64px)}
+  .hero-intro .nb{white-space:normal}
+  .hero-ans span{display:inline}
+}
+
+/* ---------- profile ---------- */
+.portrait-line{font-family:var(--f-serif);font-weight:300;font-size:clamp(34px,5.4vw,78px);line-height:1.22;letter-spacing:.02em;margin:.25em 0 .5em;text-wrap:balance}
+.portrait-line em{font-style:normal;color:var(--ember);text-shadow:0 0 50px rgba(255,196,138,.25)}
+.arenas{margin-top:clamp(40px,5vw,72px);border-top:1px solid var(--line-2)}
+.arenas li{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,4.2fr) minmax(0,4.6fr) auto;gap:10px clamp(16px,2.6vw,40px);align-items:baseline;padding:clamp(20px,2.4vw,30px) 0;border-bottom:1px solid var(--line)}
+.arenas .who{font-size:14px;color:var(--text-3)}
+.arenas .say{font-family:var(--f-serif);font-weight:600;font-size:clamp(20px,2.1vw,28px);line-height:1.4;letter-spacing:.03em}
+.arenas .why{font-size:15px;color:var(--text-2);line-height:1.75}
+.arenas a{font-size:14px;white-space:nowrap}
+@media (max-width:900px){.arenas li{grid-template-columns:1fr}.arenas li > *{grid-column:1}}
+
+.loop{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:center;margin-top:clamp(64px,8vw,120px)}
+.loop h3{font-family:var(--f-serif);font-weight:300;font-size:clamp(24px,2.7vw,38px);line-height:1.3;letter-spacing:.02em;text-wrap:balance}
+.loop h3 + .en{font-style:italic;color:var(--text-2);margin:.5em 0 1.6em;font-size:17px}
+.loop-fig{position:relative;aspect-ratio:1;max-width:440px;width:100%;margin-inline:auto}
+.loop-fig svg{width:100%;height:100%;overflow:visible}
+.loop-fig .orbit{fill:none;stroke:var(--line-2);stroke-width:1}
+.loop-fig .arc{fill:none;stroke:var(--ice);stroke-width:1.4;stroke-linecap:round}
+.loop-fig text{fill:var(--text);font-family:var(--f-serif);font-weight:600;font-size:21px;letter-spacing:.08em}
+.loop-fig .sub{fill:var(--text-3);font-family:var(--f-latin);font-style:italic;font-weight:400;font-size:14px;letter-spacing:0}
+.loop-fig .core{font-size:16px;fill:var(--ember);font-weight:300;letter-spacing:.16em}
+.loop-fig .spin{transform-origin:220px 220px;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steps li{display:grid;grid-template-columns:3.6em 1fr;gap:6px 18px;padding:18px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps b{font-family:var(--f-serif);font-weight:600;font-size:18px;letter-spacing:.08em}
+.steps p{font-size:15px;line-height:1.8;color:#d3d9e8}
+@media (max-width:900px){.loop{grid-template-columns:1fr}.loop-fig{max-width:340px}}
+
+/* mission: the team's own statement, set in the page's two lights (ice = judgment, ember = direction) */
+.m-k{font-size:15px;letter-spacing:.2em;color:var(--ice);font-weight:500}
+.m-title{font-family:var(--f-serif);font-weight:300;font-size:clamp(40px,7.2vw,108px);line-height:1.14;letter-spacing:.03em;margin:.16em 0 .36em;text-wrap:balance}
+.m-en{font-style:italic;font-size:clamp(17px,1.7vw,23px);color:var(--text-2);line-height:1.4;margin:-.9em 0 1.7em}
+.m-sub{font-family:var(--f-serif);font-weight:300;font-size:clamp(24px,3.3vw,46px);line-height:1.5;letter-spacing:.02em}
+.m-sub span{display:block;color:var(--text-2)}
+.m-sub strong{display:block;font-weight:600;color:var(--text)}
+.m-sub em{font-style:normal}
+.c-ice{color:var(--ice);text-shadow:0 0 40px rgba(154,216,255,.35)}
+.c-ember{color:var(--ember);text-shadow:0 0 40px rgba(255,196,138,.35)}
+.mission{margin-bottom:clamp(40px,5vw,72px)}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.pillars li{padding:26px 30px 30px 0}
+.pillars li + li{padding-left:30px;border-left:1px solid var(--line)}
+.pillars .pn{font-family:var(--f-mono);font-size:13px;color:var(--c)}
+.pillars b{display:block;font-family:var(--f-serif);font-weight:600;font-size:clamp(24px,2.7vw,36px);letter-spacing:.05em;line-height:1.3;color:var(--c);margin:10px 0 4px}
+.pillars .pt{font-size:14px;letter-spacing:.24em;color:var(--c);opacity:.85}
+.pillars p{font-size:16px;line-height:1.85;color:#dfe4f0;margin-top:16px;max-width:21em}
+.p1{--c:var(--ice)}.p2{--c:var(--text)}.p3{--c:var(--ember)}
+.m-close{font-family:var(--f-serif);font-weight:300;font-size:clamp(20px,2.3vw,31px);line-height:1.62;letter-spacing:.02em;margin-top:clamp(36px,4.4vw,60px);padding-top:clamp(24px,3vw,36px);border-top:1px solid var(--line);text-wrap:pretty}
+.m-close span{display:block}
+.map{border-top:1px solid var(--line-2)}
+.map-h,.map-r{display:grid;grid-template-columns:minmax(0,2.7fr) minmax(0,4.5fr) minmax(0,4.5fr);gap:8px clamp(16px,2.6vw,40px);padding:20px 0 22px;border-bottom:1px solid var(--line);align-items:baseline}
+.map-h{padding:14px 0}
+.map-h b{font-family:var(--f-serif);font-weight:600;font-size:18px;letter-spacing:.08em}
+.map-r h4 small{display:block;font-family:var(--f-sans);font-weight:400;font-size:13px;letter-spacing:.24em;color:var(--c);opacity:.85;margin-top:6px}
+.map-r h4{font-family:var(--f-serif);font-weight:600;font-size:clamp(18px,1.7vw,22px);letter-spacing:.02em;line-height:1.4;color:var(--c);text-wrap:balance}
+.map-r p{font-size:15px;line-height:1.85;color:#d3d9e8}
+@media (max-width:820px){
+  .pillars{grid-template-columns:1fr}
+  .pillars li{padding-right:0}
+  .pillars li + li{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .map-h{display:none}
+  .map-r{grid-template-columns:1fr}
+  .map-r p::before{content:attr(data-k);display:block;font-size:13px;color:var(--text-3);margin-bottom:2px}
+}
+
+/* ---------- product: The Mark of Thinking ---------- */
+.band{background:linear-gradient(180deg,rgba(14,22,46,.72),rgba(8,13,28,.55));}
+.prod-head{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.prod-head h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(44px,7vw,104px);line-height:1.05;letter-spacing:.06em}
+.prod-head .en{font-style:italic;font-size:clamp(20px,2.2vw,30px);color:var(--text-2);margin-top:.4em;line-height:1.3}
+.prod-head .tag{font-family:var(--f-latin);font-size:clamp(20px,2vw,27px);line-height:1.35;color:var(--text)}
+.prod-head .tag ~ p{color:var(--text-2);margin-top:12px;font-size:15.5px;max-width:30em}
+.prod-head .prod-links{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:20px!important;max-width:none!important}
+.prod-links a{font-size:14.5px;line-height:1.5;text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:7px 18px;color:var(--text)}
+.prod-links a:first-child{border-color:var(--ice);color:var(--ice)}
+.prod-links a:hover{border-color:var(--ice);color:var(--ice)}
+@media (max-width:820px){.prod-head{grid-template-columns:1fr;align-items:start}}
+
+.quote{font-family:var(--f-serif);font-weight:300;font-size:clamp(21px,2.3vw,31px);line-height:1.62;letter-spacing:.02em;max-width:27em;text-wrap:pretty}
+.quote + .body{margin-top:1.4em}
+.lead + .quote{margin-top:.8em}
+
+.chain{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));position:relative;margin:8px 0 30px}
+.chain::before{content:"";position:absolute;left:0;right:calc(100%/7 - 18px);top:17px;height:1px;background:linear-gradient(90deg,var(--ice) 78%,var(--ember))}
+.chain li{position:relative;padding:48px 14px 0 0}
+.chain li i{position:absolute;left:0;top:0;width:35px;height:35px;border-radius:50%;border:1px solid var(--ice);background:var(--ink-2);display:grid;place-items:center;font-family:var(--f-mono);font-style:normal;font-size:12px;color:var(--ice)}
+.chain li b{display:block;font-weight:500;font-size:15.5px;letter-spacing:.04em;line-height:1.5}
+.chain li span{display:block;font-size:13px;color:var(--text-2);line-height:1.6;margin-top:4px}
+.chain li.sign i{border-color:var(--ember);background:var(--ember);color:var(--ink);box-shadow:0 0 22px rgba(255,196,138,.6)}
+.chain li.sign b{color:var(--ember);font-family:var(--f-serif);font-weight:600;font-size:17px}
+@media (max-width:900px){
+  .chain{grid-template-columns:1fr}
+  .chain::before{left:17px;right:auto;top:10px;bottom:30px;width:1px;height:auto;background:linear-gradient(var(--ice) 78%,var(--ember))}
+  .chain li{padding:4px 0 22px 56px;min-height:48px}
+}
+
+.axes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
+.axis header{padding-bottom:18px}
+.axis header b{font-family:var(--f-serif);font-weight:600;font-size:clamp(22px,2.3vw,30px);letter-spacing:.06em}
+.axis header span{font-style:italic;color:var(--text-3);margin-left:12px;font-size:16px}
+.axis header p{color:var(--text-2);font-size:15px;margin-top:4px}
+.axis ol{position:relative;border-left:1px solid var(--c);margin-left:5px}
+.axis li{position:relative;padding:11px 0 11px 30px;display:flex;gap:16px;align-items:baseline;font-size:16px}
+.axis li::before{content:"";position:absolute;left:0;top:50%;width:16px;height:1px;background:var(--c)}
+.axis li i{font-family:var(--f-mono);font-style:normal;font-size:12.5px;color:var(--c);min-width:2em}
+.axis-d{--c:var(--ice)}.axis-a{--c:var(--ember)}
+.origins{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);margin-top:26px}
+.origins p{font-size:14.5px;line-height:1.8;color:var(--text-2);border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:640px){.axes,.origins{grid-template-columns:1fr}}
+
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line)}
+.rules li{padding:22px 24px 24px 0}
+.rules li + li{border-left:1px solid var(--line);padding-left:24px}
+.rules b{display:block;font-family:var(--f-serif);font-weight:600;font-size:clamp(19px,2vw,25px);letter-spacing:.05em}
+.rules span{display:block;color:var(--text-2);font-size:14.5px;margin-top:6px;line-height:1.7}
+@media (max-width:640px){.rules{grid-template-columns:1fr}.rules li + li{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+
+.seven{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.seven li{padding:16px 12px 18px 0;border-bottom:1px solid var(--line)}
+.seven li + li{padding-left:12px;border-left:1px solid var(--line)}
+.seven b{display:block;font-family:var(--f-latin);font-weight:400;font-size:17px;line-height:1.3;color:var(--text)}
+.seven span{display:block;font-size:12.5px;color:var(--text-3);line-height:1.5;margin-top:6px}
+.path{display:flex;flex-wrap:wrap;gap:10px 0;align-items:center;margin-top:26px;font-size:15.5px}
+.path li{display:flex;align-items:center}
+.path li + li::before{content:"";width:clamp(14px,2.4vw,34px);height:1px;background:var(--ice);margin:0 12px}
+.path li i{font-family:var(--f-mono);font-style:normal;font-size:12px;color:var(--ice);margin-right:8px}
+@media (max-width:900px){.seven{grid-template-columns:repeat(2,minmax(0,1fr))}.seven li:nth-child(odd){padding-left:0;border-left:0}.seven li:nth-child(even){padding-left:14px}}
+
+.screen{position:relative}
+.screen .bar{display:flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line-2);border-bottom:0;background:var(--ink-3);font-family:var(--f-mono);font-size:12px;color:var(--text-2);border-radius:8px 8px 0 0}
+.screen .bar::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ice);box-shadow:0 0 8px var(--ice)}
+.screen .ph{display:block;border:1px solid var(--line-2);overflow:hidden;background:#fff;position:relative}
+.screen .ph img{width:100%;height:auto}
+.screen.fade .ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18%;background:linear-gradient(transparent,rgba(5,8,20,.9))}
+.screens{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.6vw,36px)}
+.screens .s1{grid-column:1/-1}
+.screen-pair{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.66fr) minmax(0,1fr);gap:clamp(18px,2.6vw,36px);align-items:start}
+.screen-stack{display:grid;gap:clamp(18px,2.2vw,30px);align-content:start}
+.screens .s4{grid-column:1/-1}
+@media (max-width:760px){.screen-pair{grid-template-columns:1fr}.screens .s3{max-width:320px}}
+.zoom{display:block;width:100%;cursor:zoom-in;text-align:left}
+.zoom:hover img{filter:brightness(1.06)}
+
+.access{border-top:1px solid var(--line-2)}
+.access > li{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,3.1fr) minmax(0,6.8fr);gap:10px clamp(16px,2.4vw,36px);padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+.access h4{font-family:var(--f-serif);font-weight:600;font-size:20px;letter-spacing:.06em}
+.access h4 small{display:block;font-family:var(--f-sans);font-weight:400;font-size:13px;color:var(--text-3);letter-spacing:0;margin-top:2px}
+.access .url{font-family:var(--f-mono);font-size:14px;overflow-wrap:anywhere}
+.creds{display:grid;gap:8px}
+.creds div{display:grid;grid-template-columns:5.2em minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13.5px}
+.creds dt{color:var(--text-3)}
+.creds code{font-family:var(--f-mono);font-size:12.5px;color:var(--text);overflow-wrap:anywhere;background:rgba(160,185,255,.07);padding:3px 8px;border-radius:4px}
+.copy{font-size:12px;color:var(--text-2);border:1px solid var(--line-2);border-radius:999px;padding:2px 11px;line-height:1.7;white-space:nowrap}
+.copy:hover{color:var(--ice);border-color:var(--ice)}
+.copy.done{color:var(--ember);border-color:var(--ember)}
+@media (max-width:900px){.access > li{grid-template-columns:1fr}}
+
+/* ---------- Game Detective Academy ---------- */
+.game{--night:#0a0d24;background:linear-gradient(180deg,rgba(12,16,48,.9),rgba(8,11,32,.82) 30%,rgba(5,8,20,0))}
+.game-hero{position:relative;margin-bottom:clamp(48px,6vw,88px)}
+.game-hero .sky-img{position:relative;border:1px solid var(--line-2);overflow:hidden}
+.game-hero .sky-img img{width:100%;aspect-ratio:1100/514;object-fit:cover;image-rendering:auto}
+.game-hero .sky-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06091a 0%,#06091a 38%,rgba(6,9,26,.94) 47%,rgba(6,9,26,.5) 62%,rgba(6,9,26,0) 86%),linear-gradient(0deg,rgba(6,9,26,.6),transparent 40%)}
+.game-title{position:absolute;left:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);max-width:min(56%,620px);z-index:2}
+.game-title h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(36px,5.6vw,80px);line-height:1.1;letter-spacing:.05em}
+.game-title .en{font-style:italic;font-size:clamp(17px,1.9vw,26px);color:var(--text-2);margin-top:.4em}
+.motto{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:clamp(14px,2vw,28px);font-family:var(--f-serif);font-weight:600;font-size:clamp(18px,2.2vw,30px);letter-spacing:.14em;color:#ffd98a}
+.motto-en{font-style:italic;color:var(--text-2);font-size:clamp(14px,1.3vw,17px);margin-top:6px}
+@media (max-width:760px){
+  .game-title{position:static;transform:none;max-width:none;margin-bottom:22px}
+  .game-hero .sky-img::after{background:linear-gradient(0deg,rgba(6,9,26,.5),transparent 50%)}
+  .game-hero .sky-img img{object-position:78% 50%;aspect-ratio:4/3}
+}
+.spec{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);margin-top:28px}
+.spec li{padding:16px 12px 18px 0}
+.spec li + li{border-left:1px solid var(--line);padding-left:16px}
+.spec b{font-family:var(--f-latin);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;display:block}
+.spec span{font-size:13.5px;color:var(--text-2);display:block;margin-top:8px;line-height:1.5}
+@media (max-width:640px){.spec{grid-template-columns:repeat(2,minmax(0,1fr))}.spec li:nth-child(odd){border-left:0;padding-left:0}.spec li{border-bottom:1px solid var(--line)}}
+.case{counter-reset:q}
+.case li{counter-increment:q;font-family:var(--f-serif);font-weight:300;font-size:clamp(22px,2.7vw,36px);line-height:1.45;padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:2.2em 1fr;gap:0 8px;align-items:baseline}
+.case li::before{content:counter(q);font-family:var(--f-mono);font-size:13px;color:var(--ice)}
+.case li span{grid-column:2;font-family:var(--f-latin);font-style:italic;font-size:.56em;color:var(--text-3);line-height:1.4}
+.two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(22px,3.4vw,52px);align-items:center}
+.two.flip{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+@media (max-width:820px){.two,.two.flip{grid-template-columns:1fr}}
+
+.clips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);align-items:start}
+.clip{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;text-align:left;width:100%}
+.clip .poster{position:relative;display:block;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line-2);border-radius:10px;background:var(--ink-3)}
+.clip .poster img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:saturate(.9) brightness(.9)}
+.clip:hover .poster img,.clip:focus-visible .poster img{transform:scale(1.03);filter:none}
+.clip .poster::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(5,8,20,.72))}
+.clip .play{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:1px solid rgba(255,255,255,.75);background:rgba(5,8,20,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:2;transition:all .2s}
+.clip .play::before{content:"";position:absolute;left:21px;top:17px;border:10px solid transparent;border-left:15px solid #fff;border-right:0}
+.clip:hover .play{background:var(--ice);border-color:var(--ice)}
+.clip:hover .play::before{border-left-color:var(--ink)}
+.clip .t{position:absolute;right:10px;bottom:9px;z-index:2;font-family:var(--f-mono);font-size:12px;color:#fff}
+.clip .n{position:absolute;left:11px;bottom:9px;z-index:2;font-size:12px;color:#ffd98a;letter-spacing:.08em}
+.clip b{display:block;font-weight:500;font-size:15px;line-height:1.5;margin-top:12px}
+.clip .e{display:block;font-family:var(--f-latin);font-style:italic;font-size:13.5px;color:var(--text-3);line-height:1.4;margin-top:3px}
+.clip .d{display:block;font-size:13px;color:var(--text-2);line-height:1.65;margin-top:7px}
+@media (max-width:1020px){
+  .clips{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:14px;margin-right:calc(-1*var(--gutter));padding-right:var(--gutter)}
+  .clip{flex:0 0 min(58vw,230px);scroll-snap-align:start}
+}
+
+.tools{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(14px,1.8vw,24px) clamp(10px,1.4vw,18px);padding:4px 0 8px}
+@media (max-width:1020px){.tools{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (max-width:640px){.tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tools img{border-radius:6px;border:1px solid var(--line-2);aspect-ratio:4/5;object-fit:cover;width:100%}
+.tools b{display:block;font-size:13.5px;font-weight:500;margin-top:8px;line-height:1.4}
+.tools span{display:block;font-family:var(--f-latin);font-style:italic;font-size:12.5px;color:var(--text-3);line-height:1.35}
+.brief{font-family:var(--f-mono);font-size:clamp(14px,1.35vw,17px);line-height:1.75;color:#ffd98a;border-left:1px solid #ffd98a;padding:4px 0 4px 20px;margin:22px 0 10px}
+.brief + .note{padding-left:21px}
+.shots{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(12px,1.8vw,24px)}
+.shots figure{grid-column:span 4}
+.shots figure.w6{grid-column:span 6}
+.shots img{border:1px solid var(--line-2);border-radius:4px;width:100%}
+@media (max-width:760px){.shots figure,.shots figure.w6{grid-column:span 12}}
+.moves li{display:grid;grid-template-columns:2.2em 1fr;gap:4px 8px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.moves li i{font-family:var(--f-mono);font-style:normal;font-size:13px;color:var(--ice)}
+.moves li b{font-family:var(--f-serif);font-weight:600;font-size:clamp(18px,1.8vw,22px);letter-spacing:.03em;line-height:1.5}
+.moves li span{grid-column:2;font-size:14.5px;color:var(--text-2);line-height:1.75}
+.closing{font-family:var(--f-serif);font-weight:300;font-size:clamp(26px,3.4vw,48px);line-height:1.4;letter-spacing:.03em;color:#ffd98a;margin-top:clamp(48px,6vw,88px);text-wrap:balance}
+
+/* ---------- stage ---------- */
+.pull{font-family:var(--f-serif);font-weight:300;font-size:clamp(27px,3.9vw,56px);line-height:1.3;letter-spacing:.02em;color:var(--ember);text-wrap:balance;text-shadow:0 0 50px rgba(255,196,138,.2)}
+.pull-by{font-size:14px;color:var(--text-3);margin-top:16px}
+.index{border-top:1px solid var(--line-2)}
+.index li{display:grid;grid-template-columns:7.2em minmax(0,5fr) minmax(0,5fr);gap:6px clamp(14px,2.4vw,36px);padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.index .y{font-family:var(--f-mono);font-size:12.5px;color:var(--text-3)}
+.index b{font-family:var(--f-serif);font-weight:600;font-size:clamp(17px,1.6vw,20px);letter-spacing:.02em;line-height:1.5}
+.index span{font-size:14.5px;color:var(--text-2);line-height:1.7}
+@media (max-width:760px){.index li{grid-template-columns:1fr;gap:2px}}
+
+.event{margin-top:clamp(48px,6vw,88px)}
+.event > header{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;margin-bottom:20px;border-top:1px solid var(--line-2);padding-top:18px}
+.event > header h3{font-family:var(--f-serif);font-weight:600;font-size:clamp(20px,2vw,26px);letter-spacing:.03em}
+.event > header p{font-size:14px;color:var(--text-2)}
+.mosaic{display:grid;gap:clamp(8px,1vw,14px)}
+.mrow{display:flex;gap:clamp(8px,1vw,14px)}
+.shot{flex:var(--r) var(--r) 0;min-width:0;position:relative;display:block;cursor:zoom-in;overflow:hidden;background:var(--ink-3)}
+.shot img{width:100%;height:auto;aspect-ratio:var(--r);object-fit:cover;filter:saturate(.92) brightness(.9);transition:filter .3s,transform .6s}
+.shot:hover img,.shot:focus-visible img{filter:none;transform:scale(1.02)}
+.shot::after{content:"";position:absolute;inset:0;border:1px solid var(--line-2);pointer-events:none}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 9px;font-size:12.5px;line-height:1.5;color:#fff;background:linear-gradient(transparent,rgba(5,8,20,.86));opacity:0;transition:opacity .25s;text-align:left}
+.shot:hover .cap,.shot:focus-visible .cap{opacity:1}
+@media (max-width:760px){
+  .mosaic{display:block;column-count:2;column-gap:8px}
+  .mrow{display:contents}
+  .shot{display:block;margin-bottom:8px;break-inside:avoid}
+  .shot .cap{display:none}
+}
+.echo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:clamp(56px,7vw,104px);align-items:start}
+.echo blockquote{font-family:var(--f-serif);font-weight:300;font-size:clamp(22px,2.5vw,33px);line-height:1.6;color:var(--ember)}
+.echo blockquote + p{font-size:13.5px;color:var(--text-3);margin-top:14px}
+@media (max-width:820px){.echo{grid-template-columns:1fr}}
+
+/* courses by audience */
+.aud > h3{font-weight:300;font-size:clamp(30px,3.6vw,50px);letter-spacing:.08em;line-height:1.2}
+.aud > h3 small{font-size:16px;margin-top:8px}
+.courses{border-top:1px solid var(--line-2)}
+.courses > li{display:grid;grid-template-columns:7.8em minmax(0,1fr);gap:6px clamp(14px,2.4vw,36px);padding:20px 0 22px;border-bottom:1px solid var(--line);align-items:baseline}
+.courses .y{font-family:var(--f-mono);font-size:12.5px;color:var(--text-3);line-height:1.7}
+.courses b{display:block;font-family:var(--f-serif);font-weight:600;font-size:clamp(18px,1.75vw,22px);letter-spacing:.02em;line-height:1.45}
+.courses .w{display:block;font-size:14px;color:var(--ice);line-height:1.65;margin-top:3px}
+.courses p{font-size:14.5px;color:#d3d9e8;line-height:1.85;margin-top:9px;max-width:46em}
+.lk{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.lk a,.note > a.ext{font-size:12.5px;line-height:1.7;border:1px solid var(--line-2);border-radius:999px;padding:1px 12px;text-decoration:none;color:var(--text-2);white-space:nowrap}
+.lk a:hover,.note > a.ext:hover{border-color:var(--ice);color:var(--ice)}
+.note > a.ext{margin-left:8px}
+.lect .n{font-family:var(--f-mono);font-size:12.5px;color:var(--ember);margin:0 0 6px}
+.lect b{font-size:clamp(26px,3vw,40px);font-weight:300;letter-spacing:.1em}
+.lect li{display:flex;flex-direction:column;align-items:flex-start}
+.lect .lk{margin-top:auto;padding-top:14px}
+@media (max-width:640px){.courses > li{grid-template-columns:1fr;gap:2px}}
+
+/* ---------- global ---------- */
+.globe{position:absolute;right:calc(-1*var(--gutter));top:clamp(40px,6vw,90px);width:min(46vw,600px);aspect-ratio:1;opacity:.55;pointer-events:none}
+.globe svg{width:100%;height:100%}
+.globe ellipse,.globe circle,.globe line{fill:none;stroke:var(--line-2);stroke-width:1}
+.globe .hot{stroke:var(--ice);opacity:.7}
+@media (max-width:900px){.globe{opacity:.25;width:80vw}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,52px)}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.role .y{font-family:var(--f-mono);font-size:12.5px;color:var(--text-3)}
+.role h4{font-family:var(--f-serif);font-weight:600;font-size:clamp(19px,1.9vw,24px);letter-spacing:.03em;line-height:1.45;margin:4px 0 2px}
+.role .t{font-size:14.5px;color:var(--ice);margin-bottom:12px}
+.dots li{position:relative;padding-left:18px;font-size:15px;line-height:1.8;color:#d3d9e8}
+.dots li + li{margin-top:7px}
+.dots li::before{content:"";position:absolute;left:0;top:.82em;width:8px;height:1px;background:var(--ice)}
+.dots.warm li::before{background:var(--ember)}
+.time li{display:grid;grid-template-columns:7.2em minmax(0,3.2fr) minmax(0,8fr);gap:6px clamp(14px,2.2vw,32px);padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.time{border-top:1px solid var(--line-2)}
+.time .y{font-family:var(--f-mono);font-size:12.5px;color:var(--text-3)}
+.time .v{font-size:14.5px;color:var(--ice);line-height:1.6}
+.time b{font-weight:400;font-size:15.5px;line-height:1.7}
+@media (max-width:760px){.time li{grid-template-columns:1fr;gap:2px}}
+
+/* ---------- team ---------- */
+.people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,88px);align-items:start}
+.p-photo{width:min(250px,64%);margin:4px 0 26px}
+.p-photo img{aspect-ratio:4/5;object-fit:cover}
+.p-photo .ph{box-shadow:0 0 120px rgba(110,170,255,.14)}
+.person{border-top:1px solid var(--c,var(--line-2));padding-top:22px}
+.person.me{--c:var(--ember)}.person.co{--c:var(--ice)}
+.person h3{font-family:var(--f-serif);font-weight:300;font-size:clamp(32px,3.6vw,50px);letter-spacing:.12em;line-height:1.2}
+.person h3 span{font-style:italic;font-size:.38em;letter-spacing:.02em;color:var(--text-2);margin-left:.6em;font-weight:400}
+.person .does{color:var(--c);font-size:15px;margin:8px 0 20px}
+.person .dots a{white-space:nowrap;font-size:13.5px;color:var(--text-2);margin-left:.5em}
+.person .dots a:hover{color:var(--ice)}
+@media (max-width:820px){.people{grid-template-columns:1fr}}
+
+/* ---------- the answer, small additions ---------- */
+.map-note{grid-column:2/-1;font-size:14px!important;color:var(--text-2)!important;border-top:1px dashed var(--line);padding-top:12px;margin-top:4px}
+.issues{display:flex;flex-wrap:wrap;gap:7px 8px;margin:10px 0 12px}
+.issues i{font-style:normal;font-size:13.5px;line-height:1.6;color:var(--text);border:1px solid var(--line-2);border-radius:999px;padding:2px 12px;white-space:nowrap}
+.map-note a{white-space:nowrap}
+@media (max-width:820px){.map-note{grid-column:1}.map-r p.map-note::before{content:none}.map-note a{white-space:normal}}
+.pull-by a{margin-left:.5em;white-space:nowrap}
+.chapter .no{letter-spacing:.2em}
+.row > .wide{grid-column:1/-1;margin-top:clamp(6px,1vw,14px)}
+.row > .wide img{border-radius:4px}
+.row > .dots{max-width:50em}
+
+/* ---------- where 思维印记 began ---------- */
+.origin-q{font-family:var(--f-serif);font-weight:300;font-size:clamp(34px,5.4vw,76px);line-height:1.2;letter-spacing:.02em;color:var(--ember);text-shadow:0 0 60px rgba(255,196,138,.22);margin:.3em 0 .36em -.5em}
+@media (max-width:820px){.origin-q{margin-left:-.3em}}
+
+/* ---------- reading (game section) ---------- */
+.book-feature{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(26px,4.4vw,64px);align-items:stretch;margin:clamp(30px,3.6vw,48px) 0 clamp(22px,2.6vw,32px)}
+.book{--b:#ffd98a;position:relative;width:clamp(176px,18vw,238px);aspect-ratio:2/3;align-self:start;border:1px solid rgba(255,217,138,.6);background:linear-gradient(158deg,rgba(255,217,138,.16),rgba(255,217,138,.03) 58%),#0b0f2a;padding:16px 18px 16px;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;box-shadow:9px 9px 0 -1px #0b0f2a,9px 9px 0 0 rgba(255,217,138,.3),18px 18px 0 -1px #0b0f2a,18px 18px 0 0 rgba(255,217,138,.14)}
+.book .b-year{font-family:var(--f-mono);font-size:12.5px;color:var(--b)}
+.book .b-title{font-family:var(--f-serif);font-weight:600;font-size:clamp(46px,4.8vw,64px);letter-spacing:.12em;line-height:1.22;color:var(--b);align-self:center;white-space:nowrap;text-shadow:0 0 40px rgba(255,217,138,.3)}
+.book .b-author{font-size:14.5px;color:var(--text);letter-spacing:.06em}
+.book .b-en{font-style:italic;font-size:12.5px;color:var(--text-3);line-height:1.35;margin-top:3px}
+.book-steps{border-top:1px solid var(--line-2);align-self:start}
+.book-steps li{display:grid;grid-template-columns:6.4em 2.4em minmax(0,1fr);gap:4px clamp(10px,1.6vw,22px);align-items:baseline;padding:18px 0 20px;border-bottom:1px solid var(--line)}
+.book-steps .n{font-size:13px;color:var(--text-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.book-steps b{font-family:var(--f-serif);font-weight:600;font-size:clamp(24px,2.5vw,32px);color:#ffd98a;line-height:1}
+.book-steps p{font-size:15px;line-height:1.85;color:#d3d9e8}
+.book-quote{font-family:var(--f-serif);font-weight:300;font-size:clamp(24px,3vw,40px);line-height:1.4;letter-spacing:.03em;color:#ffd98a}
+.book-quote span{display:block;font-family:var(--f-sans);font-weight:400;font-size:13.5px;letter-spacing:0;color:var(--text-3);margin-top:10px}
+.shelf-h{font-family:var(--f-serif);font-weight:600;font-size:clamp(18px,1.7vw,21px);letter-spacing:.03em;margin:clamp(34px,4vw,52px) 0 12px}
+.shelf{border-top:1px solid var(--line-2)}
+.shelf li{display:grid;grid-template-columns:4.2em minmax(0,3fr) minmax(0,7.4fr) auto;gap:4px clamp(12px,2vw,28px);align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.shelf .y{font-family:var(--f-mono);font-size:12.5px;color:var(--text-3)}
+.shelf b{font-family:var(--f-serif);font-weight:600;font-size:17px;letter-spacing:.02em;line-height:1.5}
+.shelf .w{font-size:14.5px;line-height:1.75;color:#d3d9e8}
+.shelf .l{font-size:13px;color:var(--ice);white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:760px){
+  .book-feature{grid-template-columns:1fr}
+  .book{width:min(200px,60%)}
+  .book-steps li{grid-template-columns:2.2em minmax(0,1fr)}
+  .book-steps .n{grid-column:1/-1}
+  .shelf li{grid-template-columns:4.2em minmax(0,1fr)}
+  .shelf .w{grid-column:1/-1}
+  .shelf .l{grid-column:1/-1}
+}
+
+/* ---------- teachers' feedback: the originals, complete ---------- */
+.fb-index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-2);margin-top:clamp(32px,4vw,56px);counter-reset:fb}
+.fb-index a{display:block;height:100%;padding:18px 20px 22px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.fb-index li + li a{padding-left:20px;border-left:1px solid var(--line)}
+.fb-index .k{font-size:13px;color:var(--ice);letter-spacing:.08em}
+.fb-index b{display:block;font-family:var(--f-serif);font-weight:600;font-size:clamp(17px,1.5vw,19.5px);line-height:1.5;letter-spacing:.02em;margin:6px 0 6px}
+.fb-index .d{display:block;font-size:13.5px;color:var(--text-2);line-height:1.65}
+.fb-index a:hover b{color:var(--ice)}
+@media (max-width:980px){.fb-index{grid-template-columns:1fr 1fr}.fb-index li:nth-child(odd) a{padding-left:0;border-left:0}}
+@media (max-width:560px){.fb-index{grid-template-columns:1fr}.fb-index li a{padding-left:0!important;border-left:0!important}}
+
+.exhibit{margin-top:clamp(64px,8vw,120px);scroll-margin-top:16px}
+.exhibit > header{border-top:1px solid var(--line-2);padding-top:20px;margin-bottom:clamp(22px,3vw,40px)}
+.exhibit .kind{font-size:13.5px;color:var(--ice);letter-spacing:.1em}
+.exhibit h3{font-family:var(--f-serif);font-weight:300;font-size:clamp(27px,3.5vw,48px);line-height:1.25;letter-spacing:.03em;margin:.2em 0 .3em;text-wrap:balance}
+.exhibit .meta{font-size:14.5px;color:var(--text-2)}
+.ex-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(26px,4.4vw,72px);align-items:start}
+.ex-grid.phone{grid-template-columns:398px minmax(0,1fr)}
+.ex-grid.page{grid-template-columns:minmax(0,5.6fr) minmax(0,6.4fr)}
+.ex-grid.live{grid-template-columns:minmax(0,7fr) minmax(0,2.5fr) minmax(0,3fr);gap:clamp(18px,2.6vw,40px)}
+.says{display:grid;gap:clamp(20px,2.4vw,30px);align-content:start}
+.says .body{font-size:15.5px}
+.says blockquote{font-family:var(--f-serif);font-weight:300;font-size:clamp(18.5px,1.75vw,23px);line-height:1.75;letter-spacing:.01em;color:var(--text);padding-left:20px;border-left:1px solid var(--line-2);text-wrap:pretty}
+.says blockquote.hot{font-size:clamp(22px,2.4vw,31px);line-height:1.55;color:var(--ember);border-left-color:var(--ember);text-shadow:0 0 50px rgba(255,196,138,.18)}
+.says cite{display:block;font-style:normal;font-family:var(--f-sans);font-weight:400;font-size:13px;letter-spacing:0;color:var(--text-3);margin-top:8px;text-shadow:none}
+.chatlines{border-top:1px solid var(--line-2)}
+.chatlines li{font-family:var(--f-serif);font-weight:300;font-size:clamp(15.5px,1.36vw,19.5px);line-height:1.5;padding:11px 0;border-bottom:1px solid var(--line)}
+
+.reader{position:relative;border:1px solid var(--line-2);background:var(--ink-2);border-radius:8px;overflow:hidden;box-shadow:0 0 120px rgba(110,170,255,.1)}
+.reader-bar{display:flex;align-items:center;gap:14px;padding:9px 12px 9px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--text-2)}
+.reader-bar b{font-weight:500;color:var(--text);white-space:nowrap}
+.reader-bar .prog{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.reader-bar .prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ice)}
+.reader-bar button{border:1px solid var(--line-2);border-radius:999px;padding:3px 14px;font-size:13px;line-height:1.7;white-space:nowrap;color:var(--text)}
+.reader-bar button:hover{border-color:var(--ice);color:var(--ice)}
+.reader-view{height:min(86vh,880px);overflow-y:auto;background:#fff;scrollbar-width:thin;scrollbar-color:#8f9ab8 #e6e9f2}
+.reader-view img{display:block;width:100%;height:auto}
+.reader-view:focus-visible{outline-offset:-3px}
+.reader-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(5,8,20,.86);border:1px solid var(--line-2);color:var(--text);font-size:12.5px;line-height:1.6;padding:4px 14px;border-radius:999px;white-space:nowrap;pointer-events:none;transition:opacity .3s}
+.reader-hint::before{content:"↓";margin-right:.5em;color:var(--ice)}
+.reader-hint.gone{opacity:0}
+.reader.phone{width:100%;max-width:398px;border-radius:30px;padding:10px 10px 0;background:#0b1024}
+.reader.phone .reader-view{height:min(78vh,760px);border-radius:21px;background:#ededed}
+.reader.phone .reader-bar{border-bottom:0;padding:9px 6px}
+.reader.phone .reader-hint{bottom:58px}
+.doc-page{position:relative;display:block;width:100%;cursor:zoom-in;border:1px solid var(--line-2);background:#fff;box-shadow:0 0 120px rgba(110,170,255,.1)}
+.doc-page img{width:100%;height:auto;display:block}
+.doc-open{position:absolute;right:12px;bottom:12px;background:rgba(5,8,20,.86);border:1px solid var(--line-2);color:var(--text);font-size:12.5px;line-height:1.6;padding:4px 14px;border-radius:999px}
+.doc-page:hover .doc-open{border-color:var(--ice);color:var(--ice)}
+@media (max-width:980px){
+  .ex-grid,.ex-grid.page{grid-template-columns:1fr}
+  .ex-grid.live{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+  .ex-grid.live > :first-child{grid-column:1/-1}
+  .reader-view{height:min(78vh,760px)}
+}
+@media (max-width:760px){
+  .ex-grid.phone{grid-template-columns:1fr}
+  .reader.phone{margin-inline:auto}
+}
+@media (max-width:560px){
+  .ex-grid.live{grid-template-columns:1fr}
+  .ex-grid.live > figure:nth-child(2){max-width:300px}
+}
+
+/* reading an original full screen */
+#rd{display:block;padding:0;background:#04060f}
+#rd[hidden]{display:none}
+.rd-wrap{display:grid;grid-template-rows:auto minmax(0,1fr);height:100%}
+.rd-cap{padding:20px 84px 16px clamp(16px,3vw,40px);font-size:14px;line-height:1.6;color:var(--text-2);border-bottom:1px solid var(--line)}
+.rd-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 48px}
+.rd-body img{display:block;width:min(100%,1000px);height:auto;margin:0 auto}
+.rd-body.chat img{width:min(100%,560px)}
+.rd-body.wide{overflow:auto}
+.rd-body.wide img{width:max(100%,1180px);max-width:2016px}
+
+/* ---------- footer ---------- */
+.foot{padding:var(--sec) 0 56px;border-top:1px solid var(--line);position:relative}
+.foot .last{font-family:var(--f-serif);font-weight:300;font-size:clamp(28px,4.4vw,62px);line-height:1.35;letter-spacing:.02em;max-width:17em;text-wrap:balance}
+.foot .last em{font-style:normal;color:var(--ember)}
+.foot .sig{margin-top:28px;font-family:var(--f-serif);font-weight:600;letter-spacing:.2em;font-size:18px}
+.foot .sig span{font-style:italic;font-weight:400;letter-spacing:.02em;color:var(--text-2);margin-left:10px;font-size:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:clamp(48px,6vw,88px);padding-top:22px;border-top:1px solid var(--line);font-size:14.5px}
+.foot small{display:block;margin-top:26px;font-size:12.5px;color:var(--text-3)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(3,5,12,.94);display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
+.modal[hidden]{display:none}
+.modal .x{position:absolute;right:clamp(12px,2.4vw,28px);top:clamp(12px,2.4vw,24px);width:44px;height:44px;border:1px solid var(--line-2);border-radius:50%;font-size:20px;line-height:1;z-index:3;background:rgba(5,8,20,.7)}
+.modal .x:hover{border-color:var(--ice);color:var(--ice)}
+.lb-fig{max-width:min(1500px,100%);max-height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:12px;justify-items:center}
+.lb-fig img{max-width:100%;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);width:auto;height:auto;border:1px solid var(--line-2)}
+.lb-fig figcaption{text-align:center;max-width:46em;margin:0;color:var(--text)}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:66px;border:1px solid var(--line-2);font-size:22px;background:rgba(5,8,20,.6);z-index:3}
+.nav-btn:hover{border-color:var(--ice);color:var(--ice)}
+.nav-btn.prev{left:clamp(8px,1.6vw,22px)}.nav-btn.next{right:clamp(8px,1.6vw,22px)}
+.v-fig{display:grid;gap:12px;justify-items:center;max-height:100%}
+.v-fig video{height:min(82vh,860px);height:min(82dvh,860px);aspect-ratio:9/16;max-width:100%;background:#000;border:1px solid var(--line-2);border-radius:10px}
+.v-fig figcaption{text-align:center;margin:0;color:var(--text)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><canvas id="stars"></canvas><i class="aur a1"></i><i class="aur a2"></i></div>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="top">
+  <a class="brand" href="#top"><b>陈玉洁</b><span lang="en">Jade Chen</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="topnav">目录</button>
+  <nav class="top-nav" id="topnav" aria-label="章节">
+    <a href="#profile">使命</a>
+    <i class="sep" aria-hidden="true"></i>
+    <a href="#mind">思维印记</a>
+    <a href="#game">游戏侦探学院</a>
+    <a href="#team">团队</a>
+    <i class="sep" aria-hidden="true"></i>
+    <a href="#training">培训</a>
+    <a href="#feedback">教师反馈</a>
+    <a href="#scenes">现场</a>
+    <i class="sep" aria-hidden="true"></i>
+    <a href="#global">可持续发展与 ESG</a>
+  </nav>
+</header>
+
+<nav class="rail" aria-label="页面位置">
+  <a href="#top"><i></i><span>开始</span></a>
+  <a href="#profile"><i></i><span>使命</span></a>
+  <a href="#mind"><i></i><span>思维印记</span></a>
+  <a href="#game"><i></i><span>游戏侦探学院</span></a>
+  <a href="#team"><i></i><span>团队</span></a>
+  <a href="#training"><i></i><span>培训</span></a>
+  <a href="#feedback"><i></i><span>教师反馈</span></a>
+  <a href="#scenes"><i></i><span>现场</span></a>
+  <a href="#global"><i></i><span>可持续发展与 ESG</span></a>
+</nav>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" data-sec>
+  <div class="wrap hero-grid">
+    <div class="hero-side" aria-hidden="true">
+      <div class="hero-fig">
+        <svg viewBox="0 0 640 640">
+          <g class="turn">
+            <circle class="tk" cx="320" cy="320" r="292"/>
+            <circle class="tk major" cx="320" cy="320" r="288"/>
+          </g>
+          <circle class="ln" cx="320" cy="320" r="300"/>
+          <circle class="ln dash" cx="320" cy="320" r="226"/>
+          <ellipse class="orbit" cx="320" cy="320" rx="262" ry="100" transform="rotate(-66 320 320)"/>
+          <ellipse class="orbit far" cx="320" cy="320" rx="226" ry="78" transform="rotate(34 320 320)"/>
+          <circle class="core-halo" cx="320" cy="320" r="34"/>
+          <circle class="core" cx="320" cy="320" r="5"/>
+          <g class="star ember"><circle class="halo" cx="426.6" cy="80.7" r="15"/><circle cx="426.6" cy="80.7" r="5"/><text x="398" y="134" text-anchor="middle">方向</text></g>
+          <g class="star ice"><circle class="halo" cx="213.4" cy="559.3" r="15"/><circle cx="213.4" cy="559.3" r="5"/><text x="244" y="527" text-anchor="middle">判断</text></g>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-text">
+      <p class="hero-label"><b>AI 时代人才画像的探索者</b><span lang="en">Exploring the kind of person the AI age calls for</span></p>
+      <h1 class="hero-q"><span>AI 时代，该培养</span><span>什么样的人？</span></h1>
+      <p class="hero-intro">今天，对 AI 说一句话，就能得到一篇结构完整的论文，甚至一个能玩的游戏。</p>
+      <p class="hero-intro">所以，我和团队想培养的，不是只会“做得出来”的人，<span class="nb">而是这样的人：</span></p>
+      <ul class="hero-three">
+        <li class="p1"><b>保留判断</b><span>知道 AI 能做什么、不能做什么，关键的地方自己拿主意。</span></li>
+        <li class="p2"><b>解决更大的问题</b><span>从身边的现象，走到生物多样性、气候变化这样的真实议题。</span></li>
+        <li class="p3"><b>找到自己</b><span>在做事的过程中看清：自己关心什么，擅长什么。</span></li>
+      </ul>
+      <p class="hero-intro">我们的做法：先把问题研究清楚，再做成产品，<span class="nb">然后放进真实的课堂里检验。</span></p>
+      <p class="hero-links"><a href="#profile">我们的使命</a><a href="#mind">两件产品</a><a href="#training">给校长、教师和家长的课</a><a href="#feedback">听课老师的反馈</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROFILE ================= -->
+<section class="sec" id="profile" data-sec>
+  <div class="wrap">
+    <div class="mission">
+      <p class="m-k">我们的使命</p>
+      <h2 class="m-title">让每个孩子都能驾驭 AI</h2>
+      <p class="m-en" lang="en">Our mission: every child in command of AI</p>
+      <p class="m-sub"><span>AI 让「做得出来」变容易了。</span><strong>剩下两件不能外包：<i class="nb"><em class="c-ice">判断</em>，和<em class="c-ember">方向</em>。</i></strong></p>
+    </div>
+
+    <p class="m-close"><span>方向没有标准答案，基准只能是孩子自己：</span><span>不比对大数据模型，只比对他自己的历史。</span></p>
+
+    <div class="row" style="margin-top:clamp(56px,7vw,104px)">
+      <h3>在产品里怎么做<small lang="en">How the two products do it</small></h3>
+      <div class="map">
+        <div class="map-h"><span></span><b>思维印记</b><b>游戏侦探学院</b></div>
+        <div class="map-r p1">
+          <h4>保留判断<small>能力</small></h4>
+          <p data-k="思维印记">学生用 AI 做研究时，系统会记下每一次提问、核查来源、修改，以及采纳或拒绝 AI 建议的地方。评估报告会看：这一步判断是谁发起的，由谁负责。</p>
+          <p data-k="游戏侦探学院">孩子让 AI 写游戏之前，先自己把规则定好。写给 AI 的需求，最后一句固定是：不在需求里的，先问我，别替我做决定。</p>
+        </div>
+        <div class="map-r p2">
+          <h4>解决更大的问题<small>土壤</small></h4>
+          <p data-k="思维印记">学生在这里研究的，是真实的社会议题，比如：<span class="issues"><i>生物多样性与环境保护</i><i>气候变化与能源</i><i>贫困与不平等</i><i>移民与城市化</i><i>冲突与和平</i><i>数字世界</i><i>教育公平</i><i>水、粮食与农业</i></span>这些正是 Global Perspectives（全球视野）这类国际探究课程要学生研究的题目。思维印记对接七门这样的课程，包括 IB 拓展论文和 AP Research：学生自己提出问题、找证据、做论证。轻量版里还有一门课，从一个真实的 AI 公司案例出发，讨论版权、数据劳动和能源成本。</p>
+          <p data-k="游戏侦探学院">孩子从自己手里的游戏出发，研究的却是和每个人有关的问题：人为什么喜欢玩游戏？游戏为什么让人停不下来？同样的设计，为什么也出现在短视频和手机推送里？“游戏像毒品”这种说法，证据够不够？为了回答这些问题，孩子要读研究论文、新闻报道和《娱乐至死》。最后一课还有一问：我做的游戏，谁玩不了？然后为一位真实的玩家改一个功能，先问他，再动手。</p>
+          <p class="map-note">我自己在联合国和 ESG 领域做的，也是这类真实的社会议题。<a href="#global">见“解决更大的问题：可持续发展与 ESG”</a></p>
+        </div>
+        <div class="map-r p3">
+          <h4>找到自己<small>方向</small></h4>
+          <p data-k="思维印记">“我的兴趣树”从学生喜欢的东西长出来。他对什么感兴趣，系统就持续推荐相关的文章；他也可以用 AI，把自己喜欢的主题做成一个项目。读得多了，做出东西了，他会更清楚自己真正关心什么。但我们不做信息茧房：推荐不会只围着他已有的兴趣打转，也会带他读到兴趣之外的领域和不同的观点。兴趣是起点，不是边界。</p>
+          <p data-k="游戏侦探学院">一个玩起游戏就停不下来的孩子，26 节课以后，对游戏“祛魅”了：他说得出一个游戏靠哪三条规则让人停不下来，也读过《娱乐至死》，知道波兹曼 1985 年担心的事，今天在短视频、推送和 AI 里还在继续。看懂了“它”，才轮到问“我”：我喜欢的是哪一种乐趣？方向盘在谁手里，是游戏、是设计它的人、是推荐算法、是 AI，还是我自己？最后一课，他亲手写下自己的停止规则。评估也只和他自己的过去比。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop">
+      <div class="loop-fig" role="img" aria-label="研究、产品、课堂，三步循环">
+        <svg viewBox="0 0 440 440">
+          <circle class="orbit" cx="220" cy="220" r="150"/>
+          <g class="spin"><circle cx="220" cy="220" r="196" fill="none" stroke="rgba(160,185,255,.22)" stroke-width="1" stroke-dasharray="1 9"/></g>
+          <path class="arc" d="M 258 75 A 150 150 0 0 1 362 258"/>
+          <path class="arc" d="M 318 334 A 150 150 0 0 1 122 334"/>
+          <path class="arc" d="M 78 258 A 150 150 0 0 1 182 75"/>
+          <path d="M362 258 l-11 -7 l1 13 z" fill="#9ad8ff"/>
+          <path d="M122 334 l12 -4 l-8 11 z" fill="#9ad8ff"/>
+          <path d="M182 75 l-5 12 l-8 -10 z" fill="#9ad8ff"/>
+          <circle cx="220" cy="70" r="6" fill="#9ad8ff"/>
+          <circle cx="350" cy="295" r="6" fill="#9ad8ff"/>
+          <circle cx="90" cy="295" r="6" fill="#9ad8ff"/>
+          <text x="220" y="34" text-anchor="middle">研究</text>
+          <text class="sub" x="220" y="52" text-anchor="middle">research</text>
+          <text x="372" y="322" text-anchor="start">产品</text>
+          <text class="sub" x="372" y="341" text-anchor="start">product</text>
+          <text x="68" y="322" text-anchor="end">课堂</text>
+          <text class="sub" x="68" y="341" text-anchor="end">classroom</text>
+          <circle cx="220" cy="220" r="5" fill="#ffc48a"/>
+          <circle cx="220" cy="220" r="34" fill="none" stroke="rgba(255,196,138,.4)"/>
+          <text class="core" x="220" y="282" text-anchor="middle">判断与方向</text>
+        </svg>
+      </div>
+      <div>
+        <h3>我们的做法：先研究，再做产品，然后进课堂</h3>
+        <p class="en" lang="en">Research first, then product, then classroom</p>
+        <ol class="steps">
+          <li><b>研究</b><p>先弄清楚要培养的能力具体指什么，能不能被观察到。我们没有另立一套标准，而是从已有的权威框架出发。思维印记的评估维度，一部分取自七门国际探究课程评分表的共同部分，一部分来自 IB 拓展论文的评分标准 E。游戏侦探学院的 13 件思维工具，依据的是美国哲学学会 1990 年发布的批判性思维专家共识，也就是德尔菲报告。</p></li>
+          <li><b>产品</b><p>再把这些标准做进产品。思维印记记录学生使用 AI 的过程，并按这些维度生成评估报告。游戏侦探学院把批判性思维拆成 13 件工具，放进 26 节课和一个游戏里。</p></li>
+          <li><b>课堂</b><p>最后拿到真实的课堂上用，看哪里行得通、哪里行不通，再回头修改。本页下方有游戏侦探学院一对一线上课的片段。</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE MARK OF THINKING ================= -->
+<section class="sec band" id="mind" data-sec>
+  <div class="wrap">
+    <div class="prod-head">
+      <div>
+        <h2>思维印记</h2>
+        <p class="en" lang="en">The Mark of Thinking</p>
+      </div>
+      <div>
+        <p class="tag" lang="en">AI for learning. Space for thinking.</p>
+        <p>面向 IB、A-Level、AP 等国际课程的 AI 学习空间与探究过程证据系统。让思考可见，让成长可证。</p>
+        <p>简单说：学生在这里用 AI 学习和做研究，系统把过程记下来，老师就能看到学生是怎么想的。</p>
+        <p class="prod-links"><a class="ext" href="https://jcn5xnssjfi6.feishu.cn/wiki/MM7zw5XbDiuhhHkcSYacY6Lyn6f?from=from_copylink">思维印记介绍文档（飞书）</a><a class="ext" href="https://mind.uni-robot.cn/">官网</a></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>起点<small lang="en">Where it began</small></h3>
+      <div class="origin">
+        <p class="body">思维印记的起点，在我自己读 IB（国际文凭课程）的那几年。IB 里的 TOK（知识论）和 EE（拓展论文），当年逼着我回答的是同一个问题：</p>
+        <p class="origin-q">「你凭什么这么认为」</p>
+        <p class="body">这个问题今天变难了：AI 可以替一个学生给出看起来完全站得住的答案。我们想做的，是让这个问题在 AI 时代仍然问得出口，也仍然答得清楚。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>我们看到的问题<small lang="en">The problem</small></h3>
+      <div>
+        <p class="lead">生成式 AI 进入学习之后，被改变的不只是学生手里的工具，而是学校判断学习质量的证据结构。</p>
+        <p class="quote">一篇结构完整、引用齐备的论文，<br>现在已经不能单独证明学生亲自完成了关键的认知工作。</p>
+        <p class="body">IB（国际文凭课程）其实比多数体系更早处理过这件事：EE（拓展论文）设有 Researcher's Reflection Space（研究者反思空间）与三次强制反思，有 viva voce（结题面谈）；TOK（知识论）要求学生说明对象选择的理由。这些都是“要看过程”的制度安排。</p>
+        <p class="body">但就我们的观察，它们目前主要依赖学生自述，而且是事后的、点状的：几次会谈，一份反思表。它可以验证真实性，却较难支撑教学诊断。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>把过程变成证据<small lang="en">Process as evidence</small></h3>
+      <div>
+        <p class="lead">思维印记在学生使用 AI 完成研究任务的过程中，把过程本身变成证据：每一次提问、来源核查、版本修订、采纳或拒绝 AI 建议，都被留存并索引。</p>
+      </div>
+      <figure class="plate wide">
+        <button class="zoom" type="button" id="fig-evidence" data-read="fig-evidence" data-kind="wide" data-cap="思维印记：探究过程证据系统。让思考可见，让成长可证。">
+          <span class="ph"><img src="assets/mind/evidence-system.jpg" width="2016" height="1344" loading="lazy" alt="思维印记产品图示：探究过程证据系统。上方是可追溯的证据链：问题生成、信息检索、证据评估、证据使用、论证修订、AI 协作边界，最终为自己的判断署名；左下是训练：思维工具卡与学科透镜；右下是评估与干预：认知深度 D1 到 D6、智识自主 A1 到 A6，以及不合成总分、不预测成绩、不替代教师判断"></span>
+        </button>
+        <figcaption>产品图示原图：探究过程证据系统。点开可以放大。</figcaption>
+      </figure>
+    </div>
+
+    <div class="row">
+      <h3>一条路径，<span class="nb">对接七大探究体系</span><small lang="en">One path, seven programmes</small></h3>
+      <div>
+        <p class="lead">思维印记对接七门国际探究课程。下面这张图，是这七门课，和七张评分表共同考的那条路。</p>
+      </div>
+      <figure class="plate wide">
+        <button class="zoom" type="button" id="fig-seven" data-read="fig-seven" data-kind="wide" data-cap="思维印记：一条路径，对接国际课程的七大探究体系。">
+          <span class="ph"><img src="assets/mind/seven-systems-full.jpg" width="1536" height="1024" loading="lazy" alt="思维印记产品图示：一条路径，对接国际课程的七大探究体系。上排是 IGCSE Global Perspectives、A Level Global Perspectives 与 Research、EPQ、AP Capstone、IB TOK、IB EE 和七大体系的共同点；中间是一条共同的路：把问题问清楚、找证据辨信源、搭论证接住反方、比视角、回头反思；下方是七大体系的评分表共识，以及一个让步段的例子"></span>
+        </button>
+        <figcaption>产品图示原图：一条路径，对接国际课程的七大探究体系。点开可以放大。</figcaption>
+      </figure>
+    </div>
+
+    <div class="row">
+      <h3>两条轴<small lang="en">Two axes</small></h3>
+      <div>
+        <p class="body" style="margin-bottom:34px">系统会生成一份过程评估报告，分两条轴呈现。一条是认知深度，看思考走到了哪一层；另一条是智识自主，看这一步判断由谁发起、由谁负责。报告中每一条结论都链接回原始对话片段，教师可以逐条复核、修正，或者推翻。</p>
+        <div class="axes">
+          <div class="axis axis-d">
+            <header><b>认知深度</b><span lang="en">Cognitive depth</span><p>思考走到了哪一层</p></header>
+            <ol>
+              <li><i>D1</i>任务理解与问题表述</li>
+              <li><i>D2</i>证据与信源</li>
+              <li><i>D3</i>论证结构</li>
+              <li><i>D4</i>视角与偏见</li>
+              <li><i>D5</i>反馈处理与修订</li>
+              <li><i>D6</i>反思与元认知</li>
+            </ol>
+          </div>
+          <div class="axis axis-a">
+            <header><b>智识自主</b><span lang="en">Intellectual agency</span><p>这一步判断由谁发起、由谁负责</p></header>
+            <ol>
+              <li><i>A1</i>方向自主</li>
+              <li><i>A2</i>发起自主</li>
+              <li><i>A3</i>边界主权</li>
+              <li><i>A4</i>对抗与检验</li>
+              <li><i>A5</i>判断署名</li>
+              <li><i>A6</i>求真优先</li>
+            </ol>
+          </div>
+        </div>
+        <div class="origins">
+          <p>D 轴的六个测量点不是我们凭空定的。我们对比了七门国际探究课程的评分表，去掉各家不同的术语之后，它们考的是同一条路。这六个测量点，取的就是七张评分表的共同部分。</p>
+          <p>A 轴也不是我们发明的维度。intellectual initiative（智识上的主动性）是 IB 写在拓展论文评分标准 E 描述语里的词。我们做的，只是把它变成可以被观察、被复核的东西。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>三条原则<small lang="en">Three rules</small></h3>
+      <div>
+        <ul class="rules">
+          <li><b>不合成总分</b><span>两条轴、十二个维度分开呈现，不加成一个总分。</span></li>
+          <li><b>不预测成绩</b><span>不预测，不保分。</span></li>
+          <li><b>不替代教师判断</b><span>证据是用来支持教师做教学决定的。</span></li>
+        </ul>
+        <p class="body" style="margin-top:24px">教师据此看见真实的思考，判断下一步该教什么。</p>
+        <p class="body">另外，项目结束时，系统会自动生成学生的 AI use statement（AI 使用声明）与 not-used-for 清单（没有用 AI 做的部分），直接对应 IB 对 AI 使用需注明来源的要求。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>产品画面<small lang="en">Inside the product</small></h3>
+      <div class="screens">
+        <figure class="screen s1">
+          <div class="bar">mind.uni-robot.cn</div>
+          <button class="zoom" type="button" data-lb data-full="assets/mind/site-hero.jpg" data-cap="思维印记官网：AI for learning. Space for thinking.">
+            <span class="ph"><img src="assets/mind/site-hero.jpg" width="1800" height="856" loading="lazy" alt="思维印记官网首屏：AI for learning. Space for thinking."></span>
+          </button>
+          <figcaption>官网。面向学校与教育者的 AI 学习空间：从好奇出发，到阅读、写作和真实项目。</figcaption>
+        </figure>
+        <div class="screen-pair">
+          <div class="screen-stack">
+            <figure class="screen">
+              <div class="bar">mind-lite.uni-robot.cn</div>
+              <button class="zoom" type="button" data-lb data-full="assets/mind/lite-courses.jpg" data-cap="思维印记轻量版的课程库。">
+                <span class="ph"><img src="assets/mind/lite-courses.jpg" width="1800" height="1047" loading="lazy" alt="思维印记轻量版课程库界面，按立场与价值、信源核查、媒介与信息素养等分类"></span>
+              </button>
+              <figcaption>轻量版课程库。截图里有 33 门课，分为立场与价值、信源核查、媒介与信息素养、自我认知、数据素养、研究流程、论证写作七类。</figcaption>
+            </figure>
+            <figure class="screen">
+              <div class="bar">mind-lite.uni-robot.cn</div>
+              <button class="zoom" type="button" data-lb data-full="assets/mind/lite-courses-2.jpg" data-cap="思维印记轻量版课程库里的更多课程。">
+                <span class="ph"><img src="assets/mind/lite-courses-2.jpg" width="1800" height="1077" loading="lazy" alt="思维印记轻量版课程库的六门课：一张图四次翻案 OPCVL 史料评估，事实、观点还是价值判断，信息交互能力工具包，信息素养，信息过滤神器，元认知"></span>
+              </button>
+              <figcaption>课程库里的更多课程：史料评估，事实、观点与价值判断，信息素养，元认知等。</figcaption>
+            </figure>
+          </div>
+        <figure class="screen s3">
+          <div class="bar">印记</div>
+          <button class="zoom" type="button" data-lb data-full="assets/mind/lite-companion.jpg" data-cap="印记：AI 学习伙伴。">
+            <span class="ph"><img src="assets/mind/lite-companion.jpg" width="549" height="1262" loading="lazy" alt="AI 学习伙伴“印记”的介绍面板"></span>
+          </button>
+          <figcaption>AI 学习伙伴“印记”。在阅读、写作和项目中，与学生一起梳理问题、检查证据。</figcaption>
+        </figure>
+        </div>
+        <figure class="screen s4">
+          <div class="bar">mind-lite.uni-robot.cn</div>
+          <button class="zoom" type="button" data-lb data-full="assets/mind/lite-continue.jpg" data-cap="思维印记轻量版首页：继续学习。">
+            <span class="ph"><img src="assets/mind/lite-continue.jpg" width="1600" height="475" loading="lazy" alt="思维印记轻量版首页的继续学习区域，三篇进行中的阅读任务"></span>
+          </button>
+          <figcaption>轻量版首页。从上次停下的阅读任务继续。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>体验入口<small lang="en">Try it</small></h3>
+      <div>
+        <ul class="access">
+          <li>
+            <h4>官网<small>产品介绍</small></h4>
+            <a class="url ext" href="https://mind.uni-robot.cn/">mind.uni-robot.cn</a>
+            <p class="note">思维印记的完整介绍，中英文。</p>
+          </li>
+          <li>
+            <h4>介绍文档<small>飞书</small></h4>
+            <a class="url ext" href="https://jcn5xnssjfi6.feishu.cn/wiki/MM7zw5XbDiuhhHkcSYacY6Lyn6f?from=from_copylink">jcn5xnssjfi6.feishu.cn</a>
+            <p class="note">思维印记的介绍文档，在飞书上打开。</p>
+          </li>
+          <li>
+            <h4>Pro 版<small>学生端与教师端</small></h4>
+            <a class="url ext" href="https://mind-web.uni-robot.cn/">mind-web.uni-robot.cn</a>
+            <dl class="creds">
+              <div><dt>学生账号</dt><dd><code>phoebe@demo.mindimprint.local</code></dd><button class="copy" type="button" data-copy="phoebe@demo.mindimprint.local">复制</button></div>
+              <div><dt>教师账号</dt><dd><code>wu.teacher@demo.mindimprint.local</code></dd><button class="copy" type="button" data-copy="wu.teacher@demo.mindimprint.local">复制</button></div>
+              <div><dt>密码</dt><dd><code>phoebe-dev-pass</code></dd><button class="copy" type="button" data-copy="phoebe-dev-pass">复制</button></div>
+            </dl>
+          </li>
+          <li>
+            <h4>轻量版<small>阅读、写作与课程</small></h4>
+            <a class="url ext" href="https://mind-lite.uni-robot.cn/">mind-lite.uni-robot.cn</a>
+            <dl class="creds">
+              <div><dt>测试账号</dt><dd><code>lite-smoke@test.mindimprint.cn</code></dd><button class="copy" type="button" data-copy="lite-smoke@test.mindimprint.cn">复制</button></div>
+              <div><dt>密码</dt><dd><code>Test123456</code></dd><button class="copy" type="button" data-copy="Test123456">复制</button></div>
+            </dl>
+          </li>
+        </ul>
+        <p class="note" style="margin-top:14px">以上为公开的演示账号，仅供体验。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAME DETECTIVE ACADEMY ================= -->
+<section class="sec game" id="game" data-sec>
+  <div class="wrap">
+    <div class="game-hero">
+      <div class="game-title">
+        <h2>游戏侦探学院</h2>
+        <p class="en" lang="en">Game Detective Academy</p>
+        <p class="motto"><span>看得穿</span><span>做得出</span><span>停得下</span></p>
+        <p class="motto-en" lang="en">See it. Build it. Stop when you choose.</p>
+      </div>
+      <div class="sky-img"><img src="assets/game/map-full.jpg" width="1100" height="514" loading="lazy" alt="游戏侦探学院的游戏世界：夜空下的浮空岛"></div>
+    </div>
+
+    <div class="row" style="border-top:0;padding-top:0">
+      <h3>一门给游戏祛魅的课<small lang="en">The course</small></h3>
+      <div>
+        <p class="lead">游戏侦探学院是一门以孩子喜爱的游戏为入口的课程，融合了英文阅读、批判性思维，和用 AI 做游戏（vibe coding，也就是用自然语言指挥 AI 写程序）。</p>
+        <p class="body" style="margin-top:1.1em">课程围绕“游戏为什么好玩、为什么停不下来、谁在掌控”展开。孩子像侦探一样查证资料、分析游戏机制，再借助 AI 设计自己的小游戏，通过真人试玩检验想法。</p>
+        <p class="body">“祛魅”不是让孩子不玩，而是让他玩的时候，看得见游戏背后是怎么设计的。我们希望孩子在兴趣中练习独立判断，逐步做到“看得穿、做得出、停得下”。</p>
+        <ul class="spec">
+          <li><b lang="en">26</b><span>节课</span></li>
+          <li><b lang="en">27</b><span>篇英文读本，依据真实材料改写</span></li>
+          <li><b lang="en">13</b><span>件思维工具</span></li>
+          <li><b lang="en">1</b><span>个全英文的游戏世界</span></li>
+          <li><b lang="en">1</b><span>个自己设计的游戏</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>整门课，只追一个案子<small lang="en">The case</small></h3>
+      <div>
+        <ol class="case">
+          <li>游戏为什么这么好玩？<span lang="en">Why do games feel so good?</span></li>
+          <li>好玩，为什么停不下来？<span lang="en">If they feel good, why is it so hard to stop?</span></li>
+          <li>我什么时候决定停止玩游戏？<span lang="en">When do I decide to stop playing?</span></li>
+        </ol>
+        <p class="body" style="margin-top:22px">孩子在这个案子里有两个身份：侦探，也是当事人。到第 26 课，这三问会原样换成关于 AI 的。</p>
+      </div>
+    </div>
+
+    <div class="row" id="reading">
+      <h3>读书：<span class="nb">从《娱乐至死》读起</span><small lang="en">What we read</small></h3>
+      <div class="reading">
+        <p class="lead">这门课不只玩游戏、做游戏，还要读书。27 篇英文读本，全部依据真实材料改写：游戏 Wiki、官网、BBC 的报道、研究论文，还有尼尔·波兹曼的<span class="nb">《娱乐至死》。</span></p>
+        <div class="book-feature">
+          <div class="book" aria-hidden="true">
+            <span class="b-year">1985</span>
+            <span class="b-title">娱乐<br>至死</span>
+            <span class="b-author">尼尔·波兹曼</span>
+            <span class="b-en" lang="en">Amusing Ourselves to Death<br>Neil Postman</span>
+          </div>
+          <ol class="book-steps">
+            <li><span class="n">第 15 课</span><b>读</b><p>波兹曼在 1985 年担心：我们会毁于自己所热爱的东西。孩子读的是改写到他读得懂的版本，标了出处，原文随时可看。</p></li>
+            <li><span class="n">第 18 课</span><b>比</b><p>同一个问题，至少给两种来源。这一课把出版方代表的说法和波兹曼的说法放在一起读。孩子学的不是信哪一家，而是为什么这一家的证据更重。</p></li>
+            <li><span class="n">第 23 至 25 课</span><b>验</b><p>在 AI 实验室里，孩子把波兹曼的预言改成一句关于自己、今天就能测的话：“AI 答得流畅自信的时候，我会不检查就接受。”然后用自己的记录检验它：对，部分对，还是错。</p></li>
+          </ol>
+        </div>
+        <p class="book-quote">“提问，就能破除咒语。”<span>波兹曼的话。AI 实验室的第一个实验，从这句话开始。</span></p>
+
+        <h4 class="shelf-h">读本里还有这些真材料</h4>
+        <ul class="shelf">
+          <li><span class="y">1998</span><b>一项多巴胺研究</b><span class="w">“游戏像毒品”这句话的源头：只有 8 个成年人，玩的是一款坦克游戏。这句话撑得住吗？孩子自己判断。</span><span class="l">第 8 至 9 课</span></li>
+          <li><span class="y">2004</span><b>MDA 论文</b><span class="w">三位游戏设计者写的论文：别再只说“好玩”，乐趣有八种。</span><span class="l">第 1 课</span></li>
+          <li><span class="y">2014</span><b>《Hooked》</b><span class="w">一本专门教 App 设计者怎样让人养成习惯的书。</span><span class="l">第 20 课</span></li>
+          <li><span class="y">2016</span><b>一条报纸标题</b><span class="w">报纸把屏幕叫作“数字海洛因”。孩子从这条标题，追到研究的源头。</span><span class="l">第 8 课</span></li>
+          <li><span class="y">2018</span><b>BBC 的一篇报道</b><span class="w">“无限下拉”的发明者 Raskin 对 BBC 说：他后悔了。</span><span class="l">第 20 课</span></li>
+        </ul>
+
+        <p class="body" style="margin-top:28px">为什么不直接读原著？因为《娱乐至死》和研究论文的原文，对低年级的孩子来说太难了；可这门课要的又正是这些真材料。所以 27 篇读本都由真材料改写到孩子读得懂的程度。</p>
+        <ul class="rules" style="margin-top:22px">
+          <li><b>只改难度</b><span>改写只改语言难度，不改事实、数字和结论。关键句的原文和改写句并排。</span></li>
+          <li><b>出处公开</b><span>每篇读本都标注原始来源。任何一篇，都可以向老师要原文。</span></li>
+          <li><b>全英文</b><span>共 15,252 个英文词，估算蓝思值 900 至 1100L，约美国 4 至 8 年级的文本。</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>孩子掉进的洞，有两种<small lang="en">Two kinds of rabbit hole</small></h3>
+      <div class="two">
+        <figure class="plate">
+          <button class="zoom" type="button" data-lb data-full="assets/game/holes-art.jpg" data-cap="孩子掉进的洞，有两种：自己挖的洞有梯子；别人替他挖好的洞，只有一路往下的滑梯。">
+            <span class="ph"><img src="assets/game/holes-art.jpg" width="1448" height="1086" loading="lazy" alt="课程插画：左边是孩子自己挖的洞，有梯子；右边是别人替他挖好的洞，一条发光的滑梯一路往下"></span>
+          </button>
+        </figure>
+        <div>
+          <p class="quote" style="font-size:clamp(20px,2vw,27px)">没人催也挖三个小时，是自驱；停不下来，是套路。</p>
+          <p class="body">我自己也特别喜欢玩游戏，所以看到孩子玩游戏时那么兴奋，我挺能理解。那股劲，是好东西。这门课要做的，是保护前一种，看穿后一种。先当玩家，再当侦探。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(40px,5vw,72px)">
+    <div class="event" style="margin-top:0">
+      <header>
+        <h3>课堂切片</h3>
+        <p>一对一线上课的真实片段，经家长同意公开。点开播放。</p>
+      </header>
+      <div class="clips">
+        <button class="clip" type="button" data-v="assets/video/c1-fun-words.mp4" data-cap="游戏设计师从来不说“好玩”">
+          <span class="poster"><img src="assets/video/c1-fun-words.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">读本</span><span class="t">0:55</span></span>
+          <b>游戏设计师从来不说“好玩”</b>
+          <span class="e" lang="en">Game designers never say “fun”</span>
+          <span class="d">八种乐趣里，你是哪一种？先给自己的“好玩”起个名字。</span>
+        </button>
+        <button class="clip" type="button" data-v="assets/video/c2-trace-source.mp4" data-cap="搜到了，就能信吗？">
+          <span class="poster"><img src="assets/video/c2-trace-source.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">思辨</span><span class="t">1:53</span></span>
+          <b>搜到了，就能信吗？</b>
+          <span class="e" lang="en">Found it online. But is it true?</span>
+          <span class="d">先停一下，追溯来源，再分享。孩子自己换了关键词，去找官方网站。</span>
+        </button>
+        <button class="clip" type="button" data-v="assets/video/c3-variable-reward.mp4" data-cap="鸽子、赌场、打游戏，为什么是同一件事？">
+          <span class="poster"><img src="assets/video/c3-variable-reward.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">孩子金句</span><span class="t">0:40</span></span>
+          <b>鸽子、赌场、打游戏，为什么是同一件事？</b>
+          <span class="e" lang="en">Pigeon, casino, games: why are they one thing?</span>
+          <span class="d">孩子想了一会儿：它们都在让你想要，因为它不可预测。</span>
+        </button>
+        <button class="clip" type="button" data-v="assets/video/c4-know-or-believe.mp4" data-cap="我怎么知道玩家的感受？">
+          <span class="poster"><img src="assets/video/c4-know-or-believe.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">课堂技巧</span><span class="t">0:50</span></span>
+          <b>我怎么知道玩家的感受？</b>
+          <span class="e" lang="en">How do I know what players feel?</span>
+          <span class="d">只看过一个人玩，那是相信，不是知道。</span>
+        </button>
+        <button class="clip" type="button" data-v="assets/video/c5-change-one-rule.mp4" data-cap="当设计师：改一条规则，先预测玩家会怎样">
+          <span class="poster"><img src="assets/video/c5-change-one-rule.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">当设计师</span><span class="t">1:42</span></span>
+          <b>改一条规则，先预测玩家会怎样</b>
+          <span class="e" lang="en">Change one rule, predict the players</span>
+          <span class="d">把 Creeper 的生成亮度从 0 改成 5。改完先写预测：玩家会更小心。</span>
+        </button>
+        <button class="clip" type="button" data-v="assets/video/c6-how-sure.mp4" data-cap="这张卡，你有几成把握？">
+          <span class="poster"><img src="assets/video/c6-how-sure.jpg" width="720" height="1280" loading="lazy" alt=""><i class="play"></i><span class="n">收集技巧</span><span class="t">0:44</span></span>
+          <b>这张卡，你有几成把握？</b>
+          <span class="e" lang="en">How sure are you about this card?</span>
+          <span class="d">不急着对答案。100%、80% 还是 20%？先为自己的把握下注。</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="event">
+      <header>
+        <h3>13 件思维工具</h3>
+        <p>每件工具只问一个问题。每一种常见的思维错误，在游戏里被画成一只小怪。</p>
+      </header>
+      <ul class="tools">
+        <li><img src="assets/game/p-sa.jpg" width="360" height="450" loading="lazy" alt="Shortcut Alarm 技能海报"><b>捷径警报</b><span lang="en">Shortcut Alarm</span></li>
+        <li><img src="assets/game/p-kb.jpg" width="360" height="450" loading="lazy" alt="Know vs. Believe 技能海报"><b>知道还是相信</b><span lang="en">Know vs. Believe</span></li>
+        <li><img src="assets/game/p-xr.jpg" width="360" height="450" loading="lazy" alt="Assumptions 技能海报"><b>假设</b><span lang="en">Assumptions</span></li>
+        <li><img src="assets/game/p-fs.jpg" width="360" height="450" loading="lazy" alt="Fact vs. Interpretation 技能海报"><b>事实与解读</b><span lang="en">Fact vs. Interpretation</span></li>
+        <li><img src="assets/game/p-tl.jpg" width="360" height="450" loading="lazy" alt="Testing Cycle 技能海报"><b>检验循环</b><span lang="en">Testing Cycle</span></li>
+        <li><img src="assets/game/p-sd.jpg" width="360" height="450" loading="lazy" alt="Facts to Stories 技能海报"><b>我脑中的故事</b><span lang="en">Facts to Stories</span></li>
+        <li><img src="assets/game/p-co.jpg" width="360" height="450" loading="lazy" alt="Causal Reasoning 技能海报"><b>因果推理</b><span lang="en">Causal Reasoning</span></li>
+        <li><img src="assets/game/p-si.jpg" width="360" height="450" loading="lazy" alt="SIFT 技能海报"><b>SIFT</b><span lang="en">Stop. Trace it. Then share.</span></li>
+        <li><img src="assets/game/p-ca.jpg" width="360" height="450" loading="lazy" alt="CRAAP 技能海报"><b>CRAAP</b><span lang="en">Can I trust this source?</span></li>
+        <li><img src="assets/game/p-es.jpg" width="360" height="450" loading="lazy" alt="Evidence Quality 技能海报"><b>证据质量</b><span lang="en">Evidence Quality</span></li>
+        <li><img src="assets/game/p-cb.jpg" width="360" height="450" loading="lazy" alt="Reasoning Chain 技能海报"><b>推理链</b><span lang="en">Reasoning Chain</span></li>
+        <li><img src="assets/game/p-pl.jpg" width="360" height="450" loading="lazy" alt="Perspective and Bias 技能海报"><b>视角与偏见</b><span lang="en">Perspective &amp; Bias</span></li>
+        <li><img src="assets/game/p-sh.jpg" width="360" height="450" loading="lazy" alt="Stress Test 技能海报"><b>压力测试</b><span lang="en">Stress Test</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(40px,5vw,72px)">
+    <div class="row">
+      <h3>孩子当总设计师，AI 当施工队<small lang="en">Build it</small></h3>
+      <div class="two flip">
+        <div>
+          <p class="body">孩子设计一个自己的小游戏，用英文把需求写给 AI，让 AI 把它写成网页游戏，再找真人试玩，做 A/B 测试（做两个只差一处的版本，比较哪个更好）。AI 负责施工，判断留在孩子手里。写给 AI 的需求，最后一句是固定的：</p>
+          <p class="brief" lang="en">If something is not in this brief, ask me first. Don’t decide for me.</p>
+          <p class="note">好不好玩，AI 说了不算。至少找 4 个人试玩 A、B 两版。孩子先写下自己的预测，并估计有几成把握，再看数据。</p>
+        </div>
+        <figure class="plate">
+          <button class="zoom" type="button" data-lb data-full="assets/game/ai-boxes.jpg" data-cap="游戏里的一关：The AI can’t read your mind。把脑子里的“知道”分成四格，再开口。">
+            <span class="ph"><img src="assets/game/ai-boxes.jpg" width="1012" height="729" loading="lazy" alt="游戏截图：The AI can’t read your mind，四个盒子"></span>
+          </button>
+          <figcaption>AI 读不懂你的心。开口之前，先把“知道”分成四格。</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>游戏里的学习系统<small lang="en">Inside the game</small></h3>
+      <div class="shots">
+        <figure class="w6"><button class="zoom" type="button" data-lb data-full="assets/game/classroom-reading.jpg" data-cap="Field Book：左页读注明出处的英文材料，右页做工具题和阅读检查。"><img src="assets/game/classroom-reading.jpg" width="1600" height="1061" loading="lazy" alt="Field Book 阅读界面"></button><figcaption>Field Book。左页读材料，右页回到原文找依据。</figcaption></figure>
+        <figure class="w6"><button class="zoom" type="button" data-lb data-full="assets/game/case.jpg" data-cap="案件：在证词里找出和证据矛盾的那句话。"><img src="assets/game/case.jpg" width="1100" height="688" loading="lazy" alt="游戏截图：Creeper on Trial 法庭案件"></button><figcaption>26 个案件。在证词里找出和证据矛盾的那句话。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/g-map.jpg" data-cap="The Sky Islands：课程是一组漂在云海上的岛。"><img src="assets/game/g-map.jpg" width="1100" height="688" loading="lazy" alt="游戏截图：The Sky Islands 世界地图"></button><figcaption>浮空岛上的课程地图。学到哪里，火把亮到哪里。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/e-calib.jpg" data-cap="信心校准：说“95% 有把握”时，实际对了多少。"><img src="assets/game/e-calib.jpg" width="600" height="386" loading="lazy" alt="游戏截图：信心校准面板"></button><figcaption>每次作答，先估计自己有几成把握。估得准不准，比答对更重要。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/caseboard.jpg" data-cap="案件板：26 个案件都在这里。"><img src="assets/game/caseboard.jpg" width="1100" height="688" loading="lazy" alt="游戏截图：Case Board 案件板"></button><figcaption>案件板。26 个案件都在这里。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/g-posters.jpg" data-cap="Thinking Skills：13 张技能海报，每件工具五级。"><img src="assets/game/g-posters.jpg" width="1100" height="688" loading="lazy" alt="游戏截图：Thinking Skills 技能海报"></button><figcaption>技能海报。每件工具五级，游戏自动判定。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/report.jpg" data-cap="学习报告：阅读量、作答、技能等级，从存档汇成一份报告。"><img src="assets/game/report.jpg" width="1100" height="550" loading="lazy" alt="游戏截图：学习报告"></button><figcaption>学习报告。写给家长看，是游戏里仅有的两处中文之一。</figcaption></figure>
+        <figure><button class="zoom" type="button" data-lb data-full="assets/game/board-art.jpg" data-cap="两个现场，同一套问题：谁说的？凭什么？哪些是我的？"><img src="assets/game/board-art.jpg" width="1600" height="900" loading="lazy" alt="课程插画：戴侦探帽的孩子站在案情板前，卡片上写着：谁说的？凭什么？哪些是我的？"></button><figcaption>两个现场，同一套问题：谁说的？凭什么？哪些是我的？</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>AI 时代的批判性思维，五个动作<small lang="en">Five moves</small></h3>
+      <div>
+        <ol class="moves">
+          <li><i>1</i><b>把问题想清楚，比拿到答案难</b><span>说不出口的，就是还没想清楚。</span></li>
+          <li><i>2</i><b>流畅是警报，不是证据</b><span>“AI 说的”是一条来源不明的说法，先过证据关。</span></li>
+          <li><i>3</i><b>记一本“谁做的”账</b><span>规则、数字、目标、感受，是我定的；代码，是它写的。</span></li>
+          <li><i>4</i><b>决定把哪段路留给自己走</b><span>学习发生在挣扎里，所以要自己决定哪部分不交出去。</span></li>
+          <li><i>5</i><b>问同一个问题：谁在掌控？</b><span>掌控的是我，不是它。</span></li>
+        </ol>
+      </div>
+    </div>
+    <p class="closing">停下来不是不爱了，<br>是爱得更清醒。</p>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="sec" id="team" data-sec>
+  <div class="wrap">
+    <header class="sec-head">
+      <h2>团队</h2>
+      <p class="en" lang="en">The team</p>
+    </header>
+    <p class="lead" style="margin-bottom:clamp(40px,5vw,72px)">思维印记和游戏侦探学院，是我和合伙人侯煜欣一起做的。这两件产品背后的整套方法，都是我们自己研究出来的。</p>
+    <div class="people">
+      <article class="person me">
+        <figure class="plate ticks p-photo">
+          <span class="ph"><img src="assets/img/portrait-jade.jpg" width="640" height="800" loading="lazy" alt="陈玉洁肖像：黑色西装，手扶眼镜，微笑看向镜头"></span>
+        </figure>
+        <h3>陈玉洁<span lang="en">Jade Chen</span></h3>
+        <p class="does">课程与学习设计，媒介与信息素养，教师发展</p>
+        <ul class="dots warm">
+          <li>慕尼黑大学社会学与哲学本科，佩珀代因大学心理学硕士，悉尼大学教育学硕士。</li>
+          <li>在联合国系统工作八年：先任联合国教科文组织媒介与信息素养课程设计师，后任联合国训练研究所项目设计顾问。<a class="ext" href="https://www.unesco.org/en/media-information-literacy">UNESCO</a><a class="ext" href="https://unitar.org">UNITAR</a></li>
+          <li>在教科文组织，领导并参与全球及地区层面的媒介与信息素养课程框架、教学大纲和培训材料的开发与修订，把人工智能伦理、对抗错误信息等议题融入课程。在训练研究所，制定 2030 可持续发展目标学习项目的课程大纲，开发线上学习模块，面向全球各地的企业和学校授课。</li>
+          <li>天津外国语大学策马 ESG 产业学院（中国首家 ESG 产业学院）理事，搭建学院的 ESG 课程评价体系与课程标准。</li>
+          <li>AI 高质量教学研究院、芯耘未来教育公益计划特聘专家；智显机器人 AI 教育板块高级顾问。</li>
+          <li>参与出版世外智慧研究院《慧见·AI 伦理白皮书》《AI 时代教师能力模型》，复旦大学出版社《ESG 入门》系列丛书；参与起草团体标准《国有企业 ESG 评价指南》。</li>
+          <li>给校长、教师和家长讲 AI 时代的教育，获“AI 应用达人”称号；2025 年以来参与并举办七场联合国边会与国际论坛。</li>
+        </ul>
+      </article>
+      <article class="person co">
+        <figure class="plate ticks p-photo">
+          <span class="ph"><img src="assets/img/portrait-hou.jpg" width="640" height="800" loading="lazy" alt="侯煜欣肖像：浅蓝色衬衫，微笑看向镜头"></span>
+        </figure>
+        <h3>侯煜欣<span lang="en">Hou Yuxin</span></h3>
+        <p class="does">AI 教育技术，计算社会学，课程研发</p>
+        <ul class="dots">
+          <li>16 岁考取清华大学。清华大学机械系与心理系双学位本科、教育学硕士，北京大学计算社会学博士。</li>
+          <li>曾任清华大学 XLP 超限课程设计者和团队负责人，清华大学 Nand2X 计算思维课程开发项目总监。</li>
+          <li>前悉之教育 CTO，主导研发国内首个基于知识图谱和自动推理的 K12 自适应 AI 老师。公司获新东方 1000 万天使轮投资，后获经纬、真格、基因资本、头头是道等一线资本投资，并被高途教育集团收购。创始团队入选福布斯 30 岁以下最杰出的 30 个创业团队。</li>
+          <li>曾在联合国儿童基金会负责社会情感学习项目的课程开发和项目落地。</li>
+          <li>华为开发者大会特邀嘉宾，发表年度华为女性开发者主题演讲。</li>
+          <li>发表《我国教育强国战略的政策扩散研究》等顶刊论文；编著《大语言模型与社会科学分析：理论、方法与实践》（北京大学出版社，北京大学大语言模型应用课程指定教材，已在课堂试用，即将出版）。</li>
+          <li>联合开设北京大学《社科数据思维与分析方法》课程；北京大学首届 AI+地缘政治风险高校挑战赛核心执行人与课程讲师。</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRAINING ================= -->
+<section class="sec" id="training" data-sec>
+  <div class="wrap">
+    <header class="sec-head">
+      <h2><span class="ph">给校长、</span><span class="ph">教师和家长的课</span></h2>
+      <p class="en" lang="en">Courses for principals, teachers and parents</p>
+    </header>
+    <div class="echo" style="margin-top:0">
+      <div>
+        <p class="lead">除了做产品，我也讲课。听课的主要是三类人：校长、教师和家长。</p>
+        <p class="body" style="margin-top:1.2em">我的课不从“怎么用 AI 工具”讲起。因为很多老师不是不会用工具，而是心里有顾虑：怕被替代，怕自己不再是课堂上“最懂的人”。所以我先帮大家看清这些顾虑，再谈怎么用 AI。</p>
+        <p class="body">用到的理论主要有两个。一个是哈佛大学 Robert Kegan 等人提出的“变革免疫”，解释人为什么明明想改变，却改变不了。另一个是 IFS 内在家庭系统，这是一种心理学方法，把内心不同的声音看作不同的“角色”。</p>
+      </div>
+      <div>
+        <p class="pull">机器越来越像人，<br>但人不能越来越像机器。</p>
+        <p class="pull-by">这是我在《AI 时代的教育观》课上说的一句话。怀宁县振宁小学把它写进了工作简报。<a href="#fb-zhenning">看这份简报</a></p>
+      </div>
+    </div>
+
+    <div class="row aud" id="for-principals" style="margin-top:clamp(48px,6vw,88px)">
+      <h3>给校长<small lang="en">For principals</small></h3>
+      <div>
+        <ul class="courses">
+          <li>
+            <span class="y">上海</span>
+            <div>
+              <b>上海世外教育集团校长培训</b>
+              <span class="w">培训主题：《首届教育者 AI 应用大会案例》</span>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/uwv_cRIwM4OchFwBi0zlBQ">文章</a></span>
+            </div>
+          </li>
+        </ul>
+        <p class="note" style="margin-top:16px;font-size:14.5px;color:var(--text-2)">另外，我参与出版了世外智慧研究院的两份成果：《慧见·AI 伦理白皮书》和《AI 时代教师能力模型》。<a class="ext" href="https://mp.weixin.qq.com/s/HpbTc9GnrSSFslqcwC3tlg">白皮书</a></p>
+      </div>
+    </div>
+
+    <div class="row aud" id="for-teachers">
+      <h3>给教师<small lang="en">For teachers</small></h3>
+      <div>
+        <p class="body" style="margin-bottom:24px">给教师的课最多，一共七门，有线上直播，也有线下工作坊。贯穿这些课的想法是：先“修心智”，再“用工具”。</p>
+        <ul class="courses">
+          <li>
+            <span class="y">2026.04.22<br>2026.04.24</span>
+            <div>
+              <b>给老师的心灵剧场</b>
+              <span class="w">AI 高质量教学直播间。4 月 22 日首讲《人人都是 AI 应用达人》，4 月 24 日返场《AI 江湖众生相》（30 人论坛第 7 讲）</span>
+              <p>我把老师面对 AI 的八种常见反应，画成八个“门派”：鸵鸟派（装看不见）、侠客派（坚决反对）、追星派（追着新工具跑）、卷王派（拼命学）、戏精派（假装很懂）、自卑派（觉得自己学不会）、佛系派（嘴上说随缘）、卧底派（偷偷在用）。老师先认出自己是哪一派，再用 IFS 的方法看清：这个反应在保护自己什么。这门课的结论是：AI 是放大器和工具，不是对手。</p>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/30m6pRygiZI-Eqv_Sjzuyw">文章一</a><a class="ext" href="https://mp.weixin.qq.com/s/HiLKV0a7XcASUbff48yaeA">文章二</a><a class="ext" href="https://mp.weixin.qq.com/s/E2wDwQR1bQzxWzbHbyZRMQ">文章三</a><a class="ext" href="https://mp.weixin.qq.com/s/DzfBvnxy_-g_GLa-8KNOdQ">文章四</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">2026.04.26</span>
+            <div>
+              <b>AI 时代的教育观</b>
+              <span class="w">成安县全体教师 AI 智能素养课程第二讲，“芯耘未来”教育公益计划。ClassIn 四个教室同步直播</span>
+              <p>这门课先讲教师面对 AI 的五种常见状态：焦虑的合规者、方法的寻找者、精密的设计者、倦怠的反思者、觉醒的质疑者。然后用“变革免疫”的方法，帮老师找到真正卡住自己的那个想法，比如“如果我不是最懂的老师，我就失去了作为教师的价值”。</p>
+              <p>同一门课，我也在芯耘公益“AI 创生学校”第二期讲过，是第五讲。</p>
+              <span class="lk"><a href="#feedback">看听课老师的反馈</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">2026.05.23</span>
+            <div>
+              <b>AI 时代的认识论</b>
+              <span class="w">首届教育者 AI 应用大会，AI 应用达人秀，上海</span>
+              <p>在大会的 AI 应用达人秀上做分享，主题是“揭开 AI 时代的认知底层逻辑”。认识论研究的是：我们凭什么说自己“知道”一件事。我因这次分享获得“AI 应用达人”称号。</p>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/jPofQszAMqf4GVEV0vaDCA">文章</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">2026.05.23–24</span>
+            <div>
+              <b>国际视野下的 AI 伦理工作坊</b>
+              <span class="w">首届教育者 AI 应用大会，AI 高质量教学中小学工作坊，上海</span>
+              <p>用“变革免疫”和五大心智图谱，带老师讨论一个问题：在 AI 面前，教师不可替代的是什么。</p>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/wKyZie9PF5vwJZH07jnIkA">文章</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">2026.07.06</span>
+            <div>
+              <b>变革免疫：为什么我们难以改变</b>
+              <span class="w">2026 年厦台学习共同体交流活动“数智时代的课堂变革与教师的进化”，厦门</span>
+              <p>我带领了一场工作坊，题目是“我们为何难以改变”，并参加了台上对谈。</p>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/nkuptDMWD4TVGQoPd14Z5Q">文章</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">暑期</span>
+            <div>
+              <b>AI 伦理与安全边界</b>
+              <span class="w">芯耘未来教育公益，《暑期教师数字素养公益培训》</span>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/jHSxcBllqpRNSQsaCBHyzw?scene=1">文章</a></span>
+            </div>
+          </li>
+          <li>
+            <span class="y">10 月 7 日</span>
+            <div>
+              <b>AI 时代的教师游戏力</b>
+              <span class="w">教师工作坊</span>
+              <p>讲怎样把游戏化的思路用到教学里：用游戏化思维找教学灵感，用 AI 工具提高课堂效率，让学生在游戏中成长。</p>
+              <span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/mMFoUZgu-uwf6gRjajX_kA">文章</a></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row aud" id="for-parents">
+      <h3>给家长<small lang="en">For parents</small></h3>
+      <div>
+        <p class="body" style="margin-bottom:24px">给家长的是一个系列课，叫“AI 时代家长的必修课”，用游戏化的方式上。一共三讲，每一讲讲孩子需要的一种能力。</p>
+        <ul class="rules lect">
+          <li><span class="n">第 1 讲</span><b>判断力</b><span>AI 越好用，孩子越需要一样它给不了的东西</span><span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/RM57rWhWYPGOZx8f81Sqvg">文章</a></span></li>
+          <li><span class="n">第 2 讲</span><b>思维力</b><span>AI 不会读心</span><span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/X2UWm-t53XhUJb1e-A6v7g">文章</a></span></li>
+          <li><span class="n">第 3 讲</span><b>自驱力</b><span>没人催，也愿意动起来的孩子</span><span class="lk"><a class="ext" href="https://mp.weixin.qq.com/s/Ct7e5Qlje3WH-Q7UoTad3Q">文章</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEEDBACK ================= -->
+<section class="sec fb" id="feedback" data-sec>
+  <div class="wrap">
+    <header class="sec-head">
+      <h2>听课老师的反馈</h2>
+      <p class="en" lang="en">What teachers wrote after class</p>
+    </header>
+    <p class="lead">《AI 时代的教育观》这门课，我在成安县面向全县教师讲过，也在芯耘公益“AI 创生学校”第二期讲过。课后，有学校把学习过程整理成了简报，也有老师在培训群里写下了心得。</p>
+    <p class="body" style="margin-top:1.1em">下面是四份原件，全部完整呈现。长图可以在框内滚动阅读，也可以点“全屏阅读”。</p>
+
+    <ol class="fb-index">
+      <li><a href="#fb-decheng"><span class="k">学校简报</span><b>广东德成教育集团德成中英文学校</b><span class="d">学习简报全文，最后一部分是 16 位老师的学习心得</span></a></li>
+      <li><a href="#fb-huangxiao"><span class="k">培训群</span><b>潢小 AI 创生学校培训群</b><span class="d">群聊长截图，7 位老师写的课后心得</span></a></li>
+      <li><a href="#fb-zhenning"><span class="k">学校简报</span><b>怀宁县振宁小学</b><span class="d">AI 高质量教学学习团队工作简报，2026 年 5 月 10 日</span></a></li>
+      <li><a href="#fb-chengan"><span class="k">直播课</span><b>成安县全体教师 AI 智能素养课程</b><span class="d">第二讲的直播画面和聊天区留言，2026 年 4 月 26 日</span></a></li>
+    </ol>
+
+    <article class="exhibit" id="fb-decheng">
+      <header>
+        <p class="kind">学校简报</p>
+        <h3>广东德成教育集团德成中英文学校</h3>
+        <p class="meta">学习简报：AI 时代的教育观专题学习。学习形式：线上专题培训</p>
+      </header>
+      <div class="ex-grid">
+        <div class="says">
+          <p class="body">学校把这次学习整理成了一份完整的简报，共六个部分：成人心智发展模型，AI 时代教师的三种认知视角，教师面对 AI 的五种行为模式，变革免疫与教师专业成长路径，关键启示与反思，最后是 16 位老师写的学习心得。</p>
+          <blockquote class="hot">“真正的教学变革不是从使用更多 AI 工具开始，而是从审视和转化内心的重大假设开始。”<cite>简报第五部分，关键启示与反思</cite></blockquote>
+          <blockquote>“我们拥抱 AI，不是要否定过去的自己，而是要解锁新的自己。”<cite>一位小学老师的学习心得</cite></blockquote>
+          <blockquote>“AI 让教学越来越‘精密’，可我们的初衷，是希望孩子能学会自主啊。别让工具的便利，变成了学生自由成长的枷锁。”<cite>一位小学教师的学习心得</cite></blockquote>
+          <blockquote>“反观自身，我最大的内在恐惧是害怕失去专业权威。……今天的课程也让我明白，AI 时代的成长，先要破除心智壁垒，放下执念，从抗拒变革到主动接纳，才能真正用好工具、实现自我成长。”<cite>一位小学教师的学习心得</cite></blockquote>
+        </div>
+        <div class="reader" id="rd-decheng">
+          <div class="reader-bar"><b>学习简报全文</b><span class="prog" aria-hidden="true"><i></i></span><button type="button" data-read="rv-decheng" data-kind="doc" data-cap="广东德成教育集团德成中英文学校学习简报：AI 时代的教育观专题学习。全文。">全屏阅读</button></div>
+          <div class="reader-view" id="rv-decheng" tabindex="0" role="region" aria-label="德成中英文学校学习简报全文，可滚动">
+            <img src="assets/fb/decheng-01.jpg" width="1400" height="1637" decoding="async" alt="广东德成教育集团德成中英文学校学习简报全文：AI 时代的教育观专题学习，共六个部分，最后是教师学习心得">
+            <img src="assets/fb/decheng-02.jpg" width="1400" height="1514" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/decheng-03.jpg" width="1400" height="1648" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/decheng-04.jpg" width="1400" height="1844" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/decheng-05.jpg" width="1400" height="1778" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/decheng-06.jpg" width="1400" height="1662" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/decheng-07.jpg" width="1400" height="1581" loading="lazy" decoding="async" alt="">
+          </div>
+          <p class="reader-hint" aria-hidden="true">在框内向下滚动，阅读全文</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="exhibit" id="fb-huangxiao">
+      <header>
+        <p class="kind">培训群</p>
+        <h3>潢小 AI 创生学校培训群</h3>
+        <p class="meta">30 人的学校培训群。群聊长截图，7 位老师写的课后心得</p>
+      </header>
+      <div class="ex-grid phone">
+        <div class="reader phone" id="rd-huangxiao">
+          <div class="reader-view" id="rv-huangxiao" tabindex="0" role="region" aria-label="潢小培训群的聊天记录，可滚动">
+            <img src="assets/fb/huangxiao-01.jpg" width="860" height="1641" decoding="async" alt="潢小 AI 创生学校培训群的聊天长截图：7 位老师写的课后心得">
+            <img src="assets/fb/huangxiao-02.jpg" width="860" height="1627" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/huangxiao-03.jpg" width="860" height="1388" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/huangxiao-04.jpg" width="860" height="1445" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/huangxiao-05.jpg" width="860" height="1388" loading="lazy" decoding="async" alt="">
+            <img src="assets/fb/huangxiao-06.jpg" width="860" height="1044" loading="lazy" decoding="async" alt="">
+          </div>
+          <div class="reader-bar"><span class="prog" aria-hidden="true"><i></i></span><button type="button" data-read="rv-huangxiao" data-kind="chat" data-cap="潢小 AI 创生学校培训群：老师们写的课后心得。群聊长截图。">全屏阅读</button></div>
+          <p class="reader-hint" aria-hidden="true">在框内向下滚动，阅读全部</p>
+        </div>
+        <div class="says">
+          <p class="body">课后，老师们在学校的培训群里写下了心得。截图里一共 7 条，左边是完整的长截图。下面四句，摘自其中四位老师。</p>
+          <blockquote class="hot">“AI 不是来取代我的，而是来帮我卸下‘全知全能’包袱的。看见这一点，改变就已经开始了。”</blockquote>
+          <blockquote>“这次 AI 教育培训，让我走出了面对技术变革的焦虑，也看清了教师角色的新定位。”</blockquote>
+          <blockquote>“真正改变我的，从来不是掌握多少智能工具，而是看待教学的思维方式彻底转变。”</blockquote>
+          <blockquote>“我深刻认识到，拥抱 AI 不能停留在工具使用层面，更要打破旧有信念，从课堂的权威者转变为与学生共同探索 AI 的引导者，实现教育理念的迭代升级。”</blockquote>
+        </div>
+      </div>
+    </article>
+
+    <article class="exhibit" id="fb-zhenning">
+      <header>
+        <p class="kind">学校简报</p>
+        <h3>怀宁县振宁小学</h3>
+        <p class="meta">AI 高质量教学学习团队工作简报，2026 年 5 月 10 日</p>
+      </header>
+      <div class="ex-grid page">
+        <button class="doc-page" type="button" id="pg-zhenning" data-read="pg-zhenning" data-kind="doc" data-cap="怀宁县振宁小学 AI 高质量教学学习团队工作简报，2026 年 5 月 10 日。">
+          <img src="assets/fb/zhenning.jpg" width="1140" height="1614" loading="lazy" alt="怀宁县振宁小学工作简报整页：标题“智启教育 与 AI 同行”，记录《AI 时代的教育观》一课的要点">
+          <span class="doc-open">点开放大阅读</span>
+        </button>
+        <div class="says">
+          <p class="body">振宁小学的 AI 高质量教学学习团队，把这节课记进了工作简报，标题是“智启教育 与 AI 同行”。左边是简报整页，下面是其中三段原文。</p>
+          <blockquote class="hot">“教师的价值<br>在于 AI 无法复制的‘默会感知’”<cite>简报里的小标题</cite></blockquote>
+          <blockquote>“很多时候，一位经验丰富的老师看一眼学生，就知道他今天‘不太对’；听一句回答，就能感受到背后状态的变化。这样的判断，不是算法能够轻易替代的。”</blockquote>
+          <blockquote>“面对技术的快速迭代，很多老师陷入了深深的‘变革免疫’中。……打破这一壁垒的关键，在于向内探索，完成教师自身的心智进化。”</blockquote>
+        </div>
+      </div>
+    </article>
+
+    <article class="exhibit" id="fb-chengan">
+      <header>
+        <p class="kind">直播课</p>
+        <h3>成安县全体教师 AI 智能素养课程</h3>
+        <p class="meta">第二讲《AI 时代的教育观》，2026 年 4 月 26 日 20:00 至 21:00，ClassIn 四个教室同步直播</p>
+      </header>
+      <div class="ex-grid live">
+        <figure class="plate">
+          <button class="zoom" type="button" data-lb data-full="assets/fb/chengan.jpg" data-cap="成安县全体教师 AI 智能素养课程第二讲：AI 时代的教育观。2026 年 4 月 26 日，直播结束时的屏幕。">
+            <span class="ph"><img src="assets/fb/chengan.jpg" width="2200" height="1650" loading="lazy" alt="直播课的电脑屏幕：课件首页写着“成安县全体教师 AI 智能素养课程，第二讲：AI 时代的教育观，主讲陈玉洁老师”，右侧是聊天区"></span>
+          </button>
+          <figcaption>直播结束时的屏幕，21:02。课件下方写着：指导单位中国教育发展战略学会，主办单位成安县教育体育局，支持单位上海世外智慧教育 AI 应用研究院、上海世外幼教。</figcaption>
+        </figure>
+        <figure class="plate">
+          <button class="zoom" type="button" data-lb data-full="assets/fb/chengan-chat.jpg" data-cap="聊天区放大：课程结束时，各校老师的留言。">
+            <span class="ph"><img src="assets/fb/chengan-chat.jpg" width="800" height="1200" loading="lazy" alt="聊天区放大图：老师们的留言“把握当下，享受人生”“接受变化，积极进步”“能够适应生活，接受自我”“珍惜当下，过好当下”"></span>
+          </button>
+          <figcaption>聊天区放大。</figcaption>
+        </figure>
+        <div class="says">
+          <p class="body">这是“芯耘未来”教育公益计划的一节课，面向成安县全体教师。课程结束时，各校老师在聊天区留言：</p>
+          <ul class="chatlines">
+            <li>“把握当下，享受人生”</li>
+            <li>“接受变化，积极进步”</li>
+            <li>“能够适应生活，接受自我”</li>
+            <li>“珍惜当下，过好当下”</li>
+            <li>“谢谢陈老师”</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= SCENES ================= -->
+<section class="sec" id="scenes" data-sec>
+  <div class="wrap">
+    <header class="sec-head">
+      <h2>现场</h2>
+      <p class="en" lang="en">On site</p>
+    </header>
+    <p class="lead" style="margin-bottom:clamp(36px,4.6vw,64px)">课程和工作坊的照片、海报和视觉记录。点开可以看大图。</p>
+    <div class="event" style="margin-top:0">
+      <header>
+        <h3>教师课的海报与视觉记录</h3>
+        <p>《给老师的心灵剧场》与《AI 时代的教师游戏力》</p>
+      </header>
+      <div class="mosaic">
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:.5624" data-lb data-full="assets/img/poster-theatre.jpg" data-cap="《给老师的心灵剧场：AI 江湖众生相》直播海报。AI 高质量教学直播间 30 人论坛第 7 讲，2026 年 4 月 24 日。"><img src="assets/img/poster-theatre.jpg" width="1100" height="1956" loading="lazy" alt="《给老师的心灵剧场》直播海报：面对 AI，你是哪一派"><span class="cap">《给老师的心灵剧场》海报</span></button>
+          <button class="shot" type="button" style="--r:1.447" data-lb data-full="assets/img/theatre-map.jpg" data-cap="《AI 江湖众生相：给老师的心灵剧场》直播的视觉记录，2026 年 4 月 24 日。八大面具门派，六步解咒法。"><img src="assets/img/theatre-map.jpg" width="1600" height="1106" loading="lazy" alt="《AI 江湖众生相：给老师的心灵剧场》视觉记录"><span class="cap">心灵剧场的视觉记录</span></button>
+          <button class="shot" type="button" style="--r:.75" data-lb data-full="assets/img/poster-play.jpg" data-cap="《AI 时代的教师游戏力》海报：让教育在游戏中更有创造力。"><img src="assets/img/poster-play.jpg" width="1086" height="1448" loading="lazy" alt="《AI 时代的教师游戏力》课程海报"><span class="cap">《AI 时代的教师游戏力》海报</span></button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="event">
+      <header>
+        <h3>上海，首届教育者 AI 应用大会</h3>
+        <p><span class="mono">2026.05.23 – 24</span>　上海世外教育集团主办，芯耘教育公益</p>
+      </header>
+      <div class="mosaic">
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:.803" data-lb data-full="assets/img/workshop.jpg" data-cap="“国际视野下的 AI 伦理工作坊”现场。上海，2026 年 5 月。"><img src="assets/img/workshop.jpg" width="1400" height="1743" loading="lazy" alt="陈玉洁在工作坊现场，伸手指向大屏幕讲解"><span class="cap">AI 伦理工作坊现场</span></button>
+          <button class="shot" type="button" style="--r:1.724" data-lb data-full="assets/img/talk-stage.jpg" data-cap="AI 应用达人秀现场，屏幕上是“心灵剧场 × AI 江湖”。上海，2026 年 5 月。"><img src="assets/img/talk-stage.jpg" width="1800" height="1044" loading="lazy" alt="陈玉洁在 AI 应用达人秀现场分享，台下坐满听众"><span class="cap">AI 应用达人秀现场</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:1.479" data-lb data-full="assets/img/stage-duo.jpg" data-cap="首届教育者 AI 应用大会主舞台。上海，2026 年 5 月 23 – 24 日。"><img src="assets/img/stage-duo.jpg" width="1600" height="1082" loading="lazy" alt="陈玉洁在大会主舞台前合影"><span class="cap">大会主舞台</span></button>
+          <button class="shot" type="button" style="--r:1.852" data-lb data-full="assets/img/stage-group.jpg" data-cap="主舞台合影。"><img src="assets/img/stage-group.jpg" width="1800" height="972" loading="lazy" alt="主舞台上的嘉宾合影"><span class="cap">主舞台合影</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:.833" data-lb data-full="assets/img/flyer.jpg" data-cap="个人分享海报：AI 时代的认识论。"><img src="assets/img/flyer.jpg" width="1200" height="1440" loading="lazy" alt="手持“AI 时代的认识论”分享海报"><span class="cap">分享海报：AI 时代的认识论</span></button>
+          <button class="shot" type="button" style="--r:1.176" data-lb data-full="assets/img/ethics-group.jpg" data-cap="“国际视野下的 AI 伦理工作坊”合影。"><img src="assets/img/ethics-group.jpg" width="1500" height="1275" loading="lazy" alt="AI 伦理工作坊合影，教师们手持证书"><span class="cap">AI 伦理工作坊合影</span></button>
+          <button class="shot" type="button" style="--r:1.077" data-lb data-full="assets/img/corridor.jpg" data-cap="会场走廊里的分享海报。"><img src="assets/img/corridor.jpg" width="1500" height="1393" loading="lazy" alt="会场走廊墙上的一排分享海报"><span class="cap">会场走廊</span></button>
+          <button class="shot" type="button" style="--r:.777" data-lb data-full="assets/img/certificate.jpg" data-cap="“AI 应用达人”荣誉证书，2026 年 5 月 23 日。"><img src="assets/img/certificate.jpg" width="1100" height="1415" loading="lazy" alt="“AI 应用达人”荣誉证书"><span class="cap">“AI 应用达人”证书</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:.659" data-lb data-full="assets/img/ethics-poster.jpg" data-cap="工作坊 09：国际视野下的 AI 伦理工作坊。围绕“变革免疫”与五大心智图谱思辨，追问教师的不可替代性。"><img src="assets/img/ethics-poster.jpg" width="1100" height="1670" loading="lazy" alt="国际视野下的 AI 伦理工作坊海报"><span class="cap">工作坊海报</span></button>
+          <button class="shot" type="button" style="--r:1.875" data-lb data-full="assets/img/stage-award.jpg" data-cap="主舞台上的颁证合影。"><img src="assets/img/stage-award.jpg" width="1800" height="960" loading="lazy" alt="主舞台上一排嘉宾手持证书合影"><span class="cap">颁证合影</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:1.672" data-lb data-full="assets/img/everyone-map.jpg" data-cap="《人人都是 AI 应用达人》直播的视觉记录，2026 年 4 月 22 日。"><img src="assets/img/everyone-map.jpg" width="1600" height="957" loading="lazy" alt="《人人都是 AI 应用达人》视觉记录"><span class="cap">《人人都是 AI 应用达人》</span></button>
+          <button class="shot" type="button" style="--r:2.387" data-lb data-full="assets/img/wall-graphics.jpg" data-cap="会场里的视觉记录墙。"><img src="assets/img/wall-graphics.jpg" width="1800" height="754" loading="lazy" alt="会场里的视觉记录墙"><span class="cap">视觉记录墙</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:1.333" data-lb data-full="assets/img/programme.jpg" data-cap="大会手册内页。"><img src="assets/img/programme.jpg" width="1500" height="1125" loading="lazy" alt="大会手册内页"><span class="cap">大会手册</span></button>
+          <button class="shot" type="button" style="--r:2.56" data-lb data-full="assets/img/wall-speakers.jpg" data-cap="AI 应用达人秀嘉宾墙。"><img src="assets/img/wall-speakers.jpg" width="1800" height="703" loading="lazy" alt="AI 应用达人秀嘉宾墙"><span class="cap">达人秀嘉宾墙</span></button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="event">
+      <header>
+        <h3>厦门，厦台学习共同体交流活动</h3>
+        <p><span class="mono">2026.07.06</span>　数智时代的课堂变革与教师的进化</p>
+      </header>
+      <div class="mosaic">
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:.4835" data-lb data-full="assets/img/xiamen-banner.jpg" data-cap="工作坊立牌：变革免疫，为什么我们难以改变。"><img src="assets/img/xiamen-banner.jpg" width="1100" height="2275" loading="lazy" alt="工作坊立牌：变革免疫，为什么我们难以改变"><span class="cap">工作坊立牌</span></button>
+          <button class="shot" type="button" style="--r:2.582" data-lb data-full="assets/img/xiamen-panel.jpg" data-cap="圆桌论坛发言。厦门，2026 年 7 月。"><img src="assets/img/xiamen-panel.jpg" width="1800" height="697" loading="lazy" alt="陈玉洁在圆桌论坛上手持话筒发言"><span class="cap">圆桌论坛</span></button>
+        </div>
+        <div class="mrow">
+          <button class="shot" type="button" style="--r:1.789" data-lb data-full="assets/img/xiamen-class.jpg" data-cap="厦台学习共同体交流活动，教室合影。"><img src="assets/img/xiamen-class.jpg" width="1800" height="1006" loading="lazy" alt="与教师们在教室里合影"><span class="cap">教室合影</span></button>
+          <button class="shot" type="button" style="--r:.75" data-lb data-full="assets/img/xiamen-booklet.jpg" data-cap="活动手册。"><img src="assets/img/xiamen-booklet.jpg" width="1100" height="1467" loading="lazy" alt="活动手册内页"><span class="cap">活动手册</span></button>
+          <button class="shot" type="button" style="--r:1.837" data-lb data-full="assets/img/xiamen-scroll.jpg" data-cap="厦台学习共同体交流活动，会场合影。"><img src="assets/img/xiamen-scroll.jpg" width="1800" height="980" loading="lazy" alt="在会场手持长卷合影"><span class="cap">会场合影</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GLOBAL ================= -->
+<section class="sec" id="global" data-sec>
+  <div class="globe" aria-hidden="true">
+    <svg viewBox="0 0 600 600">
+      <circle cx="300" cy="300" r="260"/>
+      <ellipse cx="300" cy="300" rx="260" ry="96"/>
+      <ellipse cx="300" cy="300" rx="260" ry="184"/>
+      <ellipse cx="300" cy="300" rx="96" ry="260"/>
+      <ellipse cx="300" cy="300" rx="184" ry="260"/>
+      <line x1="40" y1="300" x2="560" y2="300"/>
+      <line x1="300" y1="40" x2="300" y2="560"/>
+      <ellipse class="hot" cx="300" cy="300" rx="260" ry="96" transform="rotate(-23 300 300)"/>
+    </svg>
+  </div>
+  <div class="wrap" style="position:relative">
+    <div class="chapter">
+      <div class="bars" aria-hidden="true"><i></i></div>
+      <div class="ch-grid">
+        <div>
+          <p class="no">解决更大的问题</p>
+          <h2><span>可持续发展</span><span>与 ESG</span></h2>
+          <p class="en" lang="en">Bigger problems: sustainability and ESG</p>
+        </div>
+        <div>
+          <p class="sum">我们使命的第二项，是带孩子“从身边的现象走到真实的社会议题”。真实的社会议题是什么样的，我有第一手的经验：在联合国和 ESG（环境、社会和公司治理）领域，我做的就是这类议题的课程、研究、标准和会议。</p>
+          <p class="sum">这两件事是相通的。我给大学生设计过一门课，叫“‘点赞’背后的碳足迹”，就是从手机上的一个动作，走到气候这个全球议题。我带学生研究的“气候变化信息中的情感诉求和操纵技巧”，说到底也是判断力的问题。</p>
+          <div class="lines">
+            <a href="#esg-teaching"><span class="k">课程</span><b>教真实的议题</b><span class="go" aria-hidden="true">↓</span><span class="d">天津外国语大学策马 ESG 产业学院，以及给伦敦政治经济学院学生的交流课</span></a>
+            <a href="#esg-research"><span class="k">研究</span><b>论文、出版与桌游</b><span class="go" aria-hidden="true">↓</span><span class="d">带学生发表论文，参与出版教材，自研一款气候主题的桌游</span></a>
+            <a href="#esg-standards"><span class="k">任职</span><b>标准与机构</b><span class="go" aria-hidden="true">↓</span><span class="d">团体标准起草，以及在研究院、基金会和商会的任职</span></a>
+            <a href="#un-events"><span class="k">会议</span><b>国际会议与联合国边会</b><span class="go" aria-hidden="true">↓</span><span class="d">2025 年至 2026 年，共八场</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="esg-teaching" style="margin-top:clamp(48px,6vw,88px)">
+      <h3>教真实的议题<small lang="en">Courses</small></h3>
+      <ul class="dots">
+        <li>在天津外国语大学策马 ESG 产业学院（中国首家 ESG 产业学院），搭建学院的 ESG 课程评价体系、课程标准与课程体系，教授商务谈判、ESG 传播等课程。</li>
+        <li>为求索荣誉学院与伦敦政治经济学院（LSE）可持续发展专业的学生，设计并教授交流系列课程“‘点赞’背后的碳足迹”。</li>
+        <li>为“巴基斯坦高等教育高级人才研修班”设计并教授可持续发展教育课程。</li>
+        <li>面向全球各地的企业和学校，教授可持续发展目标（SDGs）与 ESG 课程。</li>
+      </ul>
+    </div>
+
+    <div class="row" id="esg-research">
+      <h3>论文、出版与桌游<small lang="en">Research and publishing</small></h3>
+      <ul class="dots">
+        <li>带领学生发表论文：《人工智能时代的气候信息生态》《气候变化信息中的情感诉求和操纵技巧，包括生成式 AI 的应用》《批判话语分析与气候叙事》《AI 的环境影响与可持续性》等。</li>
+        <li>参与出版复旦大学出版社《ESG 入门》《ESG 国际传播企业出海指南》系列丛书，用于高校教学与企业内训。</li>
+        <li>自研教育类严肃桌游《可持续发展：气候真相与迷雾》，2025 年 6 月在第三届联合国海洋大会边会上发布。</li>
+      </ul>
+    </div>
+
+    <div class="row" id="esg-standards">
+      <h3>标准与机构<small lang="en">Standards and boards</small></h3>
+      <ul class="dots">
+        <li>参与《国有企业 ESG 评价指南》（T/CIET 1477-2025）团体标准起草。</li>
+        <li><a class="ext" href="https://www.mediaesg.cn">国际 ESG 传播研究院</a>理事。</li>
+        <li>《传媒 1 号》可持续发展与 ESG 顾问，搭建 ESG 传播体系；指导《传媒 1 号》成为<a class="ext" href="https://mp.weixin.qq.com/s/FBEHVYHk1YoxFKqjOctwBQ">联合国媒介与信息素养联盟成员</a>。</li>
+        <li>中国“第一届传媒可持续发展·ESG 作品榜”评委。</li>
+        <li>创道慈善基金会首席教育顾问，设计企业出海 ESG 传播系列项目；慈善信托教育顾问。</li>
+        <li>广东省商业联合会 ESG 服务中心副主任，参与撰写企业 ESG 出海报告。</li>
+      </ul>
+    </div>
+
+    <div class="row" id="un-events">
+      <h3>国际会议与联合国边会<small lang="en">Conferences and UN side events</small></h3>
+      <div>
+      <p class="body" style="margin-bottom:22px">2025 年以来，我参与并举办了七场边会和论坛。另有一场是 2025 联合国大学澳门人工智能大会。</p>
+      <ol class="time">
+        <li><span class="y">2025.04.15</span><span class="v">联合国经社理事会青年论坛边会</span><b>人工智能与数字创新：赋能青年引领的 ESG 行动。<a class="ext" href="https://mp.weixin.qq.com/s/0cirJkUU-B-2doYWR1CfLA">文章</a></b></li>
+        <li><span class="y">2025.06.13</span><span class="v">第三届联合国海洋大会边会</span><b>海洋教育 2030：青年赋能海洋治理。会上发布自研桌游《可持续发展：气候真相与迷雾》。<a class="ext" href="https://mp.weixin.qq.com/s/wdyLKokE8_d8soRnxD9HRw">文章</a></b></li>
+        <li><span class="y">2025.10.24</span><span class="v">联合国大学澳门人工智能大会</span><b>2025 联合国大学澳门人工智能大会。<a class="ext" href="https://mp.weixin.qq.com/s/cZQqTA9_jloD-2QcHxRl6A">文章</a></b></li>
+        <li><span class="y">2025.11.05</span><span class="v">联合国第二届社会发展世界峰会线上边会</span><b>蓝色纽带：净滩行动驱动全球社会融合与跨领域变革。<a class="ext" href="https://mp.weixin.qq.com/s/4vJARtjvm16A25fxzMzrrg">文章</a></b></li>
+        <li><span class="y">2025.11.09</span><span class="v">上海进博会边会</span><b>绿色金融与可持续发展协同创新论坛。<a class="ext" href="https://mp.weixin.qq.com/s/iEHti63bUpKuhwQqWwJtPw">文章</a></b></li>
+        <li><span class="y">2026.04.14</span><span class="v">联合国经社理事会青年论坛官方边会</span><b>文化响应型领导力与青年行动：AI 赋能 ESG 韧性与可持续伙伴关系。<a class="ext" href="https://mp.weixin.qq.com/s/Y4r3TTeOPUGrR-3kjbyakQ">文章</a></b></li>
+        <li><span class="y">2026.04.16</span><span class="v">联合国经社理事会青年论坛官方边会</span><b>可信数据与负责任人工智能：青年主导的 ESG 交付与创新伙伴关系。<a class="ext" href="https://mp.weixin.qq.com/s/7MaC1MvLldUGRrnFA8GApw">文章</a></b></li>
+        <li><span class="y">2026.07.10</span><span class="v">联合国可持续发展高级别政治论坛边会</span><b>从证据到行动：人工智能、数字治理、绿色转型与包容性基础设施。<a class="ext" href="https://mp.weixin.qq.com/s/Tvz6BnWdDpoacdgXNjHPKg">文章</a></b></li>
+      </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="last">让「你凭什么这么认为」在 AI 时代仍然问得出口，也仍然答得清楚。</p>
+    <p class="sig">陈玉洁<span lang="en">Jade Chen</span></p>
+    <nav aria-label="产品入口">
+      <a class="ext" href="https://jcn5xnssjfi6.feishu.cn/wiki/MM7zw5XbDiuhhHkcSYacY6Lyn6f?from=from_copylink">思维印记介绍文档</a>
+      <a class="ext" href="https://mind.uni-robot.cn/">思维印记官网</a>
+      <a class="ext" href="https://mind-web.uni-robot.cn/">思维印记 Pro 版</a>
+      <a class="ext" href="https://mind-lite.uni-robot.cn/">思维印记轻量版</a>
+      <a href="#game">游戏侦探学院</a>
+      <a href="#top">回到顶部</a>
+    </nav>
+    <small>© 2026 陈玉洁 Jade Chen。课堂视频经学生家长同意公开。</small>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="modal" id="lb" hidden role="dialog" aria-modal="true" aria-label="查看大图">
+  <button class="x" type="button" data-close aria-label="关闭">×</button>
+  <button class="nav-btn prev" type="button" aria-label="上一张">‹</button>
+  <button class="nav-btn next" type="button" aria-label="下一张">›</button>
+  <figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>
+</div>
+<!-- long originals, full screen -->
+<div class="modal" id="rd" hidden role="dialog" aria-modal="true" aria-label="全屏阅读原件">
+  <button class="x" type="button" data-close aria-label="关闭">×</button>
+  <div class="rd-wrap">
+    <p class="rd-cap"></p>
+    <div class="rd-body" tabindex="0"></div>
+  </div>
+</div>
+<!-- video -->
+<div class="modal" id="vm" hidden role="dialog" aria-modal="true" aria-label="播放课堂片段">
+  <button class="x" type="button" data-close aria-label="关闭">×</button>
+  <figure class="v-fig"><video controls playsinline preload="none"></video><figcaption></figcaption></figure>
+</div>
+<script>
+(function () {
+  'use strict';
+  var doc = document, root = doc.documentElement;
+  var $ = function (s, c) { return (c || doc).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); };
+
+  /* ---- star field: drawn once per size, no animation ---- */
+  var cv = $('#stars');
+  function drawStars() {
+    if (!cv || !cv.getContext) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = window.innerWidth, h = window.innerHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    var g = cv.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    var seed = 20261111;
+    function rnd() { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
+    var n = Math.min(320, Math.round(w * h / 6500));
+    for (var i = 0; i < n; i++) {
+      var x = rnd() * w, y = rnd() * h, r = rnd() * rnd() * 1.3 + 0.25, a = 0.12 + rnd() * 0.6, t = rnd();
+      g.fillStyle = t > 0.93 ? 'rgba(255,196,138,' + a + ')' : t > 0.7 ? 'rgba(154,216,255,' + a + ')' : 'rgba(233,237,247,' + a + ')';
+      g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill();
+    }
+  }
+  drawStars();
+  var rz;
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawStars, 180); });
+
+  /* ---- menu on small screens ---- */
+  var mb = $('.menu-btn'), nav = $('#topnav');
+  if (mb && nav) {
+    mb.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mb.textContent = open ? '收起' : '目录';
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { nav.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); mb.textContent = '目录'; }
+    });
+  }
+
+  /* ---- where am I: light the thread and the top nav ---- */
+  var links = $$('.rail a, .top-nav a');
+  function mark(id) {
+    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + id); });
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+    }, { rootMargin: '-42% 0px -52% 0px' });
+    $$('[data-sec]').forEach(function (s) { io.observe(s); });
+  }
+  mark('top');
+
+  /* ---- modals ---- */
+  var lastFocus = null;
+  function show(m) { lastFocus = doc.activeElement; m.hidden = false; root.style.overflow = 'hidden'; var x = $('.x', m); if (x) x.focus(); }
+  function hide(m) { m.hidden = true; root.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+
+  /* lightbox */
+  var lb = $('#lb'), lbImg = $('img', lb), lbCap = $('figcaption', lb), items = $$('[data-lb]'), cur = 0;
+  function openLb(i) {
+    cur = (i + items.length) % items.length;
+    var it = items[cur], im = $('img', it);
+    lbImg.src = it.getAttribute('data-full') || (im && im.src) || '';
+    lbImg.alt = im ? im.alt : '';
+    lbCap.textContent = it.getAttribute('data-cap') || '';
+  }
+  items.forEach(function (it, i) { it.addEventListener('click', function () { openLb(i); show(lb); }); });
+  $('.prev', lb).addEventListener('click', function () { openLb(cur - 1); });
+  $('.next', lb).addEventListener('click', function () { openLb(cur + 1); });
+
+  /* long originals: scroll inside the frame, or read them full screen */
+  var rd = $('#rd'), rdBody = $('.rd-body', rd), rdCap = $('.rd-cap', rd);
+  $$('.reader').forEach(function (r) {
+    var view = $('.reader-view', r), bar = $('.prog i', r), hint = $('.reader-hint', r);
+    function upd() {
+      var max = view.scrollHeight - view.clientHeight;
+      if (bar) bar.style.width = (max > 0 ? view.scrollTop / max * 100 : 0).toFixed(1) + '%';
+      if (hint) hint.classList.toggle('gone', view.scrollTop > 24);
+    }
+    view.addEventListener('scroll', upd, { passive: true });
+    upd();
+    if ('IntersectionObserver' in window) {
+      var near = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          $$('img', view).forEach(function (im) { im.loading = 'eager'; });
+          near.disconnect();
+        });
+      }, { rootMargin: '700px 0px' });
+      near.observe(r);
+    }
+  });
+  $$('[data-read]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var from = doc.getElementById(b.getAttribute('data-read'));
+      if (!from) return;
+      rdBody.textContent = '';
+      $$('img', from).forEach(function (im) {
+        var c = doc.createElement('img');
+        c.width = im.getAttribute('width'); c.height = im.getAttribute('height');
+        c.alt = im.alt; c.src = im.getAttribute('src');
+        rdBody.appendChild(c);
+      });
+      rdBody.className = 'rd-body ' + (b.getAttribute('data-kind') || 'doc');
+      rdCap.textContent = b.getAttribute('data-cap') || '';
+      show(rd);
+      rdBody.scrollTop = 0;
+    });
+  });
+
+  /* video */
+  var vm = $('#vm'), vid = $('video', vm), vCap = $('figcaption', vm);
+  function closeVideo() { try { vid.pause(); } catch (e) {} vid.removeAttribute('src'); try { vid.load(); } catch (e) {} hide(vm); }
+  $$('.clip').forEach(function (b) {
+    b.addEventListener('click', function () {
+      vid.src = b.getAttribute('data-v');
+      var p = $('img', b); if (p) vid.poster = p.src;
+      vCap.textContent = b.getAttribute('data-cap') || '';
+      show(vm);
+      var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {});
+    });
+  });
+
+  $$('.modal').forEach(function (m) {
+    m.addEventListener('click', function (e) {
+      if (e.target === m || e.target.hasAttribute('data-close') || e.target === rdBody) { if (m === vm) closeVideo(); else hide(m); }
+    });
+  });
+  doc.addEventListener('keydown', function (e) {
+    if (!lb.hidden) {
+      if (e.key === 'Escape') hide(lb);
+      else if (e.key === 'ArrowLeft') openLb(cur - 1);
+      else if (e.key === 'ArrowRight') openLb(cur + 1);
+    } else if (!vm.hidden && e.key === 'Escape') closeVideo();
+    else if (!rd.hidden && e.key === 'Escape') hide(rd);
+  });
+
+  /* ---- outside links: a new tab when this file is opened on its own ---- */
+  var framed = true;
+  try { framed = window.self !== window.top; } catch (e) { framed = true; }
+  if (!framed) {
+    $$('a[href^="http"]').forEach(function (a) { a.target = '_blank'; a.rel = 'noopener'; });
+  }
+
+  /* ---- copy buttons ---- */
+  $$('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-copy');
+      function ok() { b.textContent = '已复制'; b.classList.add('done'); setTimeout(function () { b.textContent = '复制'; b.classList.remove('done'); }, 1600); }
+      function fallback() {
+        var code = b.parentNode.querySelector('code');
+        if (code && window.getSelection) { var r = doc.createRange(); r.selectNodeContents(code); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+        b.textContent = '已选中';
+        setTimeout(function () { b.textContent = '复制'; }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fallback);
+      else fallback();
+    });
+  });
+})();
+</script>
+</body>
+</html>
